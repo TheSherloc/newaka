@@ -6287,7 +6287,7 @@ workflows:
         - app_store_credentials # APP_STORE_CONNECT_ISSUER_ID, _KEY_IDENTIFIER, _PRIVATE_KEY
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: de.abfallkalender.app
+        bundle_identifier: de.newaka.app
     scripts:
       - name: Pub get and l10n
         script: |
@@ -6336,14 +6336,14 @@ workflows:
       - build/app/outputs/bundle/release/*.aab
 ```
 
-iOS-Bundle-ID in Xcode-Projekt setzen: In `ios/Runner.xcodeproj/project.pbxproj` alle `PRODUCT_BUNDLE_IDENTIFIER = de.abfallkalender.abfallkalender;` durch `PRODUCT_BUNDLE_IDENTIFIER = de.abfallkalender.app;` ersetzen (drei Vorkommen für Debug/Release/Profile, die `RunnerTests`-Einträge unverändert lassen).
+iOS-Bundle-ID in Xcode-Projekt setzen: In `ios/Runner.xcodeproj/project.pbxproj` alle `PRODUCT_BUNDLE_IDENTIFIER = de.abfallkalender.abfallkalender;` durch `PRODUCT_BUNDLE_IDENTIFIER = de.newaka.app;` ersetzen (drei Vorkommen für Debug/Release/Profile, die `RunnerTests`-Einträge unverändert lassen).
 
 - [ ] **Step 4: README**
 
 `README.md`:
 
 ```markdown
-# Abfallkalender
+# Newaka – Nur eine weitere Abfallkalender-App
 
 Flutter-App für iOS und Android: Abfuhrtermine per CSV, ICS oder ICS-URL importieren, im Kalender sehen und per lokaler Benachrichtigung erinnert werden. Alle Daten bleiben auf dem Gerät.
 
@@ -6378,6 +6378,101 @@ Erwartet: alles grün, `app-release.apk` gebaut (ohne `key.properties` mit Debug
 ```powershell
 git add .github codemagic.yaml android/key.properties.example android/app/build.gradle.kts .gitignore README.md ios
 git commit -m "Add CI, release signing setup and Codemagic workflows`n`nCo-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
+```
+
+---
+
+### Task 22: Umbenennung in „Newaka"
+
+Entscheidung des Auftraggebers nach Task 16: Die App heißt **Newaka**, Untertitel **„Nur eine weitere Abfallkalender-App"**. Der Dart-Paketname `abfallkalender` bleibt (Umbenennung würde jeden Import berühren und bringt nichts). Die Android-Application-ID und die iOS-Bundle-ID werden `de.newaka.app` (Task 21 verwendet bereits diesen Wert). Der Kotlin-`namespace` bleibt `de.abfallkalender.abfallkalender`.
+
+**Files:**
+- Modify: `lib/l10n/app_de.arb` (`appTitle`, neuer Schlüssel `appTagline`), `lib/features/reminders/domain/reminder_coordinator.dart` (`refreshHintTitle`), `lib/features/settings/ui/about_section.dart` (Tagline anzeigen), `android/app/src/main/AndroidManifest.xml` (`android:label`), `android/app/build.gradle.kts` (`applicationId`, falls noch `de.abfallkalender.app`), `ios/Runner/Info.plist` (`CFBundleDisplayName`, `CFBundleName`), `ios/Runner.xcodeproj/project.pbxproj` (`PRODUCT_BUNDLE_IDENTIFIER`, falls noch nicht `de.newaka.app`), `codemagic.yaml` (`bundle_identifier`), `README.md` (Titel), `pubspec.yaml` (`description`)
+- Test: `test/app/app_shell_test.dart` (eine Erwartung ergänzen), `test/features/reminders/reminder_coordinator_test.dart` (Hinweis-Titel)
+
+**Interfaces:**
+- Consumes: alles Bestehende.
+- Produces: neuer ARB-Schlüssel `appTagline`; `ReminderCoordinator.refreshHintTitle == 'Newaka'`.
+
+- [ ] **Step 1: Tests anpassen**
+
+In `test/app/app_shell_test.dart` im bestehenden Test nach dem `NavigationBar`-Check ergänzen:
+
+```dart
+    expect(find.text('Newaka'), findsOneWidget); // AppBar-Titel der Startseite
+```
+
+In `test/features/reminders/reminder_coordinator_test.dart` im Test „adds refresh hint one day after last planned when truncated (iOS)" ergänzen:
+
+```dart
+    expect(hint.title, 'Newaka');
+```
+
+- [ ] **Step 2: Fehlschlag bestätigen**
+
+```powershell
+flutter test test/app test/features/reminders
+```
+
+Erwartet: beide neuen Erwartungen schlagen fehl.
+
+- [ ] **Step 3: Umbenennen**
+
+`lib/l10n/app_de.arb`:
+
+```json
+  "appTitle": "Newaka",
+  "appTagline": "Nur eine weitere Abfallkalender-App",
+```
+
+(`appTagline` direkt nach `appTitle` einfügen.) Danach `flutter gen-l10n`.
+
+`lib/features/reminders/domain/reminder_coordinator.dart`:
+
+```dart
+  static const refreshHintTitle = 'Newaka';
+```
+
+`lib/features/settings/ui/about_section.dart`: Im `Column` als erstes Element nach der Abschnittsüberschrift einfügen:
+
+```dart
+        ListTile(
+          leading: const Icon(Icons.recycling_outlined),
+          title: Text(l10n.appTitle, style: theme.textTheme.titleMedium),
+          subtitle: Text(l10n.appTagline),
+        ),
+```
+
+`android/app/src/main/AndroidManifest.xml`: `android:label="Newaka"`.
+
+`android/app/build.gradle.kts`: `applicationId = "de.newaka.app"`.
+
+`ios/Runner/Info.plist`: `CFBundleDisplayName` und `CFBundleName` auf `Newaka`.
+
+`ios/Runner.xcodeproj/project.pbxproj`: alle `PRODUCT_BUNDLE_IDENTIFIER` des Runner-Targets (Debug/Release/Profile, nicht `RunnerTests`) auf `de.newaka.app`.
+
+`codemagic.yaml`: `bundle_identifier: de.newaka.app`.
+
+`pubspec.yaml`: `description: "Newaka – Nur eine weitere Abfallkalender-App. Abfuhrtermine importieren, im Kalender sehen, erinnert werden."`
+
+`README.md`: Titelzeile `# Newaka – Nur eine weitere Abfallkalender-App`, erster Absatz entsprechend.
+
+- [ ] **Step 4: Prüfen**
+
+```powershell
+flutter gen-l10n
+flutter analyze
+flutter test
+flutter build apk --debug
+```
+
+Erwartet: alles grün, APK gebaut. Auf dem Emulator (`flutter run -d emulator-5554`) erscheint die App als „Newaka" im Launcher; die alte `de.abfallkalender.app`-Installation vorher mit `adb uninstall de.abfallkalender.app` entfernen.
+
+- [ ] **Step 5: Commit**
+
+```powershell
+git add -A
+git commit -m "Rename app to Newaka"
 ```
 
 ---
