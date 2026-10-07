@@ -8,6 +8,7 @@ import '../../../data/models/subscription.dart';
 import '../../upcoming/providers/app_data_provider.dart';
 import '../domain/apply_import.dart';
 import '../domain/http_source.dart';
+import '../domain/import_selection.dart';
 import '../domain/parsed_import.dart';
 
 class SubscriptionNotifier extends AsyncNotifier<Subscription?> {
@@ -72,7 +73,10 @@ class SubscriptionNotifier extends AsyncNotifier<Subscription?> {
     switch (result) {
       case Ok(:final value):
         try {
-          await ref.read(appDataProvider.notifier).applyParsedImport(value, ImportMode.merge);
+          final excluded = await ref.read(settingsRepositoryProvider).loadExcludedTypeIds();
+          await ref
+              .read(appDataProvider.notifier)
+              .applyParsedImport(filterParsedImport(value, excluded), ImportMode.merge);
           await _commit(current.copyWith(lastFetched: now, clearError: true));
           return true;
         } catch (e) {

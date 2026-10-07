@@ -89,6 +89,25 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String importPreviewSelection(
+    int selected,
+    int total,
+    int types,
+    int typesTotal,
+  ) {
+    return '$selected von $total Terminen, $types von $typesTotal Abfuhrarten';
+  }
+
+  @override
+  String get importPreviewChooseTypes =>
+      'Welche Abfuhrarten sollen importiert werden?';
+
+  @override
+  String importTypeCount(int count) {
+    return '$count Termine';
+  }
+
+  @override
   String importPreviewRange(String from, String to) {
     return 'Zeitraum $from bis $to';
   }

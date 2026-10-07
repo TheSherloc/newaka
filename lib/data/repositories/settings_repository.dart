@@ -11,4 +11,8 @@ abstract class SettingsRepository {
 
   Future<DateTime?> loadLastScheduleRun();
   Future<void> saveLastScheduleRun(DateTime when);
+
+  /// IDs der Abfuhrarten, die beim Import abgewählt wurden (leer = alle).
+  Future<Set<String>> loadExcludedTypeIds();
+  Future<void> saveExcludedTypeIds(Set<String> ids);
 }
