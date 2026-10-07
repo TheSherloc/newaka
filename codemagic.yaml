@@ -1,0 +1,58 @@
+workflows:
+  ios-testflight:
+    name: iOS TestFlight
+    instance_type: mac_mini_m2
+    environment:
+      flutter: 3.47.6
+      xcode: latest
+      groups:
+        - app_store_credentials # APP_STORE_CONNECT_ISSUER_ID, _KEY_IDENTIFIER, _PRIVATE_KEY
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: de.newaka.app
+    scripts:
+      - name: Pub get and l10n
+        script: |
+          flutter pub get
+          flutter gen-l10n
+      - name: Analyze and test
+        script: |
+          flutter analyze
+          flutter test
+      - name: Set up code signing
+        script: xcode-project use-profiles
+      - name: Build ipa
+        script: flutter build ipa --release --export-options-plist=/Users/builder/export_options.plist
+    artifacts:
+      - build/ios/ipa/*.ipa
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+
+  android-release:
+    name: Android Release
+    instance_type: linux_x2
+    environment:
+      flutter: 3.47.6
+      java: 17
+      groups:
+        - android_keystore # CM_KEYSTORE (base64), CM_KEYSTORE_PASSWORD, CM_KEY_ALIAS, CM_KEY_PASSWORD
+    scripts:
+      - name: Restore keystore
+        script: |
+          echo $CM_KEYSTORE | base64 --decode > $CM_BUILD_DIR/android/upload-keystore.jks
+          cat > $CM_BUILD_DIR/android/key.properties <<EOF
+          storePassword=$CM_KEYSTORE_PASSWORD
+          keyPassword=$CM_KEY_PASSWORD
+          keyAlias=$CM_KEY_ALIAS
+          storeFile=../upload-keystore.jks
+          EOF
+      - name: Build
+        script: |
+          flutter pub get
+          flutter gen-l10n
+          flutter test
+          flutter build appbundle --release
+    artifacts:
+      - build/app/outputs/bundle/release/*.aab

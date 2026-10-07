@@ -1,0 +1,1231 @@
+BEGIN:VCALENDAR
+METHOD:PUBLISH
+PRODID:-//landkreis-AugsburgLandkreis.de//NONSGML c-ware 1.0//
+VERSION:2.0
+X-WR-CALNAME:Abfuhrdaten Landkreis AugsburgLandkreis
+X-WR-CALDESC:Abfuhrtermine AugsburgLandkreis / 2026 für Bobingen\, Karwend
+ elstraße
+X-WR-TIMEZONE:Europe/Berlin
+BEGIN:VEVENT
+UID:20260102T000000CET-66510@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260102T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260102T060000
+DTEND:20260102T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260109T000000CET-65755@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260109T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260109T060000
+DTEND:20260109T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260113T000000CET-64237@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260113T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260113T060000
+DTEND:20260113T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260115T000000CET-66511@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260115T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260115T060000
+DTEND:20260115T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260122T000000CET-65756@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260122T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260122T060000
+DTEND:20260122T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260123T000000CET-66877@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260123T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260123T060000
+DTEND:20260123T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Altpapier Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260127T000000CET-64238@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260127T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260127T060000
+DTEND:20260127T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260129T000000CET-66512@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260129T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260129T060000
+DTEND:20260129T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260205T000000CET-65757@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260205T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260205T060000
+DTEND:20260205T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260210T000000CET-64239@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260210T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260210T060000
+DTEND:20260210T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260212T000000CET-66513@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260212T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260212T060000
+DTEND:20260212T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260219T000000CET-65758@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260219T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260219T060000
+DTEND:20260219T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260220T000000CET-66878@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260220T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260220T060000
+DTEND:20260220T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Altpapier Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260224T000000CET-64240@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260224T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260224T060000
+DTEND:20260224T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260226T000000CET-66514@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260226T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260226T060000
+DTEND:20260226T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260305T000000CET-65759@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260305T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260305T060000
+DTEND:20260305T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260310T000000CET-64241@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260310T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260310T060000
+DTEND:20260310T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260312T000000CET-66515@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260312T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260312T060000
+DTEND:20260312T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260319T000000CET-65760@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260319T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260319T060000
+DTEND:20260319T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260320T000000CET-66879@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260320T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260320T060000
+DTEND:20260320T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Altpapier Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260324T000000CET-64242@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260324T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260324T060000
+DTEND:20260324T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260326T000000CET-66516@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260326T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260326T060000
+DTEND:20260326T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260401T000000CET-65761@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260401T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260401T060000
+DTEND:20260401T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260408T000000CET-64243@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260408T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260408T060000
+DTEND:20260408T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260410T000000CET-66517@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260410T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260410T060000
+DTEND:20260410T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260416T000000CET-65762@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260416T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260416T060000
+DTEND:20260416T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260417T000000CET-66880@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260417T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260417T060000
+DTEND:20260417T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Altpapier Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260421T000000CET-64244@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260421T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260421T060000
+DTEND:20260421T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260423T000000CET-66518@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260423T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260423T060000
+DTEND:20260423T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260430T000000CET-65763@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260430T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260430T060000
+DTEND:20260430T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260505T000000CET-64245@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260505T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260505T060000
+DTEND:20260505T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260507T000000CET-66519@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260507T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260507T060000
+DTEND:20260507T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260515T000000CET-65764@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260515T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260515T060000
+DTEND:20260515T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260516T000000CET-66881@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260516T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260516T060000
+DTEND:20260516T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Altpapier Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260516T000000CET-67590@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260516T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260516T060000
+DTEND:20260516T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Problemabfallsammlung
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260519T000000CET-64246@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260519T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260519T060000
+DTEND:20260519T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260521T000000CET-66520@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260521T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260521T060000
+DTEND:20260521T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260529T000000CET-65765@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260529T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260529T060000
+DTEND:20260529T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260602T000000CET-64247@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260602T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260602T060000
+DTEND:20260602T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260605T000000CET-66521@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260605T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260605T060000
+DTEND:20260605T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260611T000000CET-65766@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260611T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260611T060000
+DTEND:20260611T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260612T000000CET-66882@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260612T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260612T060000
+DTEND:20260612T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Altpapier Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260616T000000CET-64248@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260616T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260616T060000
+DTEND:20260616T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260618T000000CET-66522@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260618T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260618T060000
+DTEND:20260618T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260625T000000CET-65767@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260625T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260625T060000
+DTEND:20260625T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260630T000000CET-64249@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260630T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260630T060000
+DTEND:20260630T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260702T000000CET-66523@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260702T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260702T060000
+DTEND:20260702T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260709T000000CET-65768@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260709T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260709T060000
+DTEND:20260709T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260710T000000CET-66883@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260710T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260710T060000
+DTEND:20260710T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Altpapier Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260714T000000CET-64250@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260714T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260714T060000
+DTEND:20260714T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260716T000000CET-66524@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260716T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260716T060000
+DTEND:20260716T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260723T000000CET-65769@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260723T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260723T060000
+DTEND:20260723T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260728T000000CET-64251@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260728T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260728T060000
+DTEND:20260728T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260730T000000CET-66525@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260730T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260730T060000
+DTEND:20260730T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260806T000000CET-65770@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260806T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260806T060000
+DTEND:20260806T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260807T000000CET-66884@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260807T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260807T060000
+DTEND:20260807T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Altpapier Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260811T000000CET-64252@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260811T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260811T060000
+DTEND:20260811T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260813T000000CET-66526@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260813T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260813T060000
+DTEND:20260813T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260820T000000CET-65771@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260820T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260820T060000
+DTEND:20260820T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260825T000000CET-64253@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260825T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260825T060000
+DTEND:20260825T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260827T000000CET-66527@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260827T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260827T060000
+DTEND:20260827T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260903T000000CET-65772@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260903T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260903T060000
+DTEND:20260903T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260904T000000CET-66885@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260904T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260904T060000
+DTEND:20260904T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Altpapier Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260908T000000CET-64254@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260908T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260908T060000
+DTEND:20260908T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260910T000000CET-66528@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260910T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260910T060000
+DTEND:20260910T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260917T000000CET-65773@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260917T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260917T060000
+DTEND:20260917T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260922T000000CET-64255@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260922T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260922T060000
+DTEND:20260922T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20260924T000000CET-66529@landkreis-AugsburgLandkreis.de
+DTSTAMP:20260924T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20260924T060000
+DTEND:20260924T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261001T000000CET-65774@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261001T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261001T060000
+DTEND:20261001T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261002T000000CET-66886@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261002T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261002T060000
+DTEND:20261002T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Altpapier Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261006T000000CET-64256@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261006T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261006T060000
+DTEND:20261006T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261008T000000CET-66530@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261008T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261008T060000
+DTEND:20261008T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261015T000000CET-65775@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261015T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261015T060000
+DTEND:20261015T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261020T000000CET-64257@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261020T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261020T060000
+DTEND:20261020T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261022T000000CET-66531@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261022T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261022T060000
+DTEND:20261022T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261029T000000CET-65776@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261029T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261029T060000
+DTEND:20261029T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261030T000000CET-66887@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261030T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261030T060000
+DTEND:20261030T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Altpapier Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261031T000000CET-67591@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261031T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261031T060000
+DTEND:20261031T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Problemabfallsammlung
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261103T000000CET-64258@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261103T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261103T060000
+DTEND:20261103T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261105T000000CET-66532@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261105T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261105T060000
+DTEND:20261105T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261112T000000CET-65777@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261112T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261112T060000
+DTEND:20261112T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261117T000000CET-64259@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261117T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261117T060000
+DTEND:20261117T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261119T000000CET-66533@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261119T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261119T060000
+DTEND:20261119T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261126T000000CET-65778@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261126T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261126T060000
+DTEND:20261126T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261127T000000CET-66888@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261127T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261127T060000
+DTEND:20261127T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Altpapier Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261201T000000CET-64260@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261201T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261201T060000
+DTEND:20261201T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261203T000000CET-66534@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261203T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261203T060000
+DTEND:20261203T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261210T000000CET-65779@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261210T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261210T060000
+DTEND:20261210T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261215T000000CET-64261@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261215T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261215T060000
+DTEND:20261215T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261217T000000CET-66535@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261217T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261217T060000
+DTEND:20261217T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261223T000000CET-65780@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261223T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261223T060000
+DTEND:20261223T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Restmüll Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261224T000000CET-66889@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261224T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261224T060000
+DTEND:20261224T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Altpapier Tonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261229T000000CET-64262@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261229T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261229T060000
+DTEND:20261229T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Wertstofftonne / Gelber Container
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+BEGIN:VEVENT
+UID:20261231T000000CET-66536@landkreis-AugsburgLandkreis.de
+DTSTAMP:20261231T000000Z
+CATEGORIES:Abfuhrtermine
+DESCRIPTION:Die Mülltonnen müssen am Abfuhrtag um 6.30 Uhr bereitstehen.
+DTSTART:20261231T060000
+DTEND:20261231T163000
+LOCATION:AugsburgLandkreis / 2026 für Bobingen\, Karwendelstraße
+SUMMARY:Abfuhr: Biotonne
+URL:http://www.landkreis-AugsburgLandkreis.de
+X-MICROSOFT-CDO-BUSYSTATUS:FREE
+STATUS:FREE
+END:VEVENT
+END:VCALENDAR
