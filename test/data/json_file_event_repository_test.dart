@@ -49,4 +49,29 @@ void main() {
     ));
     expect((await repo.load()).data.events.length, 1);
   });
+
+  test('valid JSON with wrong shape is treated as corrupt', () async {
+    File('${dir.path}/data.json').writeAsStringSync('[]');
+    final repo = JsonFileEventRepository(dir);
+    final r = await repo.load();
+    expect(r.wasCorrupt, isTrue);
+    expect(File('${dir.path}/data.json.broken').existsSync(), isTrue);
+  });
+
+  test('concurrent saves do not interfere and last write wins', () async {
+    final repo = JsonFileEventRepository(dir);
+    final a = AppData(
+      events: [PickupEvent(date: DateTime(2026, 1, 2), wasteTypeId: 'a', sourceId: 's')],
+      wasteTypes: const [],
+    );
+    final b = AppData(
+      events: [PickupEvent(date: DateTime(2026, 1, 3), wasteTypeId: 'b', sourceId: 's')],
+      wasteTypes: const [],
+    );
+    await Future.wait([repo.save(a), repo.save(b)]);
+    final r = await repo.load();
+    expect(r.wasCorrupt, isFalse);
+    expect(r.data.events.single.wasteTypeId, 'b');
+    expect(File('${dir.path}/data.json.tmp').existsSync(), isFalse);
+  });
 }
