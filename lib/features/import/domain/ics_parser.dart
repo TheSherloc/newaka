@@ -14,6 +14,7 @@ class IcsParser {
     final pickups = <RawPickup>[];
     var skipped = 0;
     var inEvent = false;
+    var nested = 0;
     String? dtstart;
     String? summary;
     String? description;
@@ -21,6 +22,7 @@ class IcsParser {
     for (final line in _unfold(text)) {
       if (line == 'BEGIN:VEVENT') {
         inEvent = true;
+        nested = 0;
         dtstart = null;
         summary = null;
         description = null;
@@ -37,6 +39,19 @@ class IcsParser {
         continue;
       }
       if (!inEvent) continue;
+
+      // Handle nested components (e.g., VALARM)
+      if (line.startsWith('BEGIN:')) {
+        nested++;
+        continue;
+      }
+      if (line.startsWith('END:') && nested > 0) {
+        nested--;
+        continue;
+      }
+
+      // Skip properties inside nested components
+      if (nested > 0) continue;
 
       final colon = line.indexOf(':');
       if (colon < 0) continue;

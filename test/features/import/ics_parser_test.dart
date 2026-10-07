@@ -90,4 +90,25 @@ END:VCALENDAR
     expect(r.isOk, isFalse);
     expect(r.when(ok: (_, _) => '', err: (m) => m), contains('keine Termine'));
   });
+
+  test('ignores properties of nested VALARM components', () {
+    const text = '''
+BEGIN:VCALENDAR
+BEGIN:VEVENT
+DTSTART:20260105
+SUMMARY:Abfuhr: Biotonne
+DESCRIPTION:Tonne bereitstellen
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Erinnerung
+SUMMARY:Alarm
+TRIGGER:-PT12H
+END:VALARM
+END:VEVENT
+END:VCALENDAR
+''';
+    final p = okValue(parser.parse(text)).single;
+    expect(p.rawName, 'Abfuhr: Biotonne');
+    expect(p.note, 'Tonne bereitstellen');
+  });
 }
