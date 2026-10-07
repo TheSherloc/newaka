@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../core/clock.dart';
 import '../data/repositories/event_repository.dart';
 import '../data/repositories/settings_repository.dart';
+import '../features/import/data/http_source_impl.dart';
+import '../features/import/domain/http_source.dart';
 import '../features/import/domain/import_service.dart';
 import '../features/reminders/domain/notification_gateway.dart';
 import '../features/reminders/domain/reminder_coordinator.dart';
@@ -25,6 +27,8 @@ final notificationGatewayProvider = Provider<NotificationGateway>(
 );
 
 final isIosProvider = Provider<bool>((_) => Platform.isIOS);
+
+final httpSourceProvider = Provider<HttpSource>((_) => HttpSourceImpl());
 
 final importServiceProvider = Provider<ImportService>((_) => ImportService());
 
