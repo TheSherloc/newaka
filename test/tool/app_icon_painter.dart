@@ -5,10 +5,18 @@ import 'package:flutter/material.dart';
 /// Wird nur vom Render-Test benutzt, der daraus die PNG-Quellen für
 /// `flutter_launcher_icons` erzeugt. Alle Maße sind relativ zur Kantenlänge.
 class AppIconPainter extends CustomPainter {
-  const AppIconPainter({required this.withBackground, this.inset = 0.0});
+  const AppIconPainter({
+    required this.withBackground,
+    this.inset = 0.0,
+    this.monochrome = false,
+  });
 
   /// `false` für den adaptiven Android-Vordergrund (Hintergrund kommt separat).
   final bool withBackground;
+
+  /// Weiße Silhouette auf Transparenz, wie Android sie für das
+  /// Statusleisten-Icon von Benachrichtigungen verlangt.
+  final bool monochrome;
 
   /// Zusätzlicher Rand (Anteil der Kantenlänge), damit der Vordergrund in der
   /// sicheren Zone adaptiver Icons bleibt.
@@ -30,8 +38,12 @@ class AppIconPainter extends CustomPainter {
     final scale = 1 - 2 * inset;
     canvas.translate(size.width * inset, size.height * inset);
     canvas.scale(scale, scale);
+    // Eigene Ebene, damit Rippen und Blattader in der Silhouette ausgestanzt
+    // werden können (BlendMode.clear) statt den Hintergrund zu löschen.
+    if (monochrome) canvas.saveLayer(Rect.largest, Paint());
 
     final white = Paint()..color = bin;
+    final cutout = Paint()..blendMode = BlendMode.clear;
 
     // Deckel: breiter Balken mit Griff.
     final lidTop = s * 0.30;
@@ -60,8 +72,7 @@ class AppIconPainter extends CustomPainter {
     canvas.drawPath(body, white);
 
     // Rippen im Körper.
-    final rib = Paint()
-      ..color = background
+    final rib = (monochrome ? cutout : Paint()..color = background)
       ..strokeWidth = s * 0.035
       ..strokeCap = StrokeCap.round;
     for (final x in [0.42, 0.50, 0.58]) {
@@ -81,19 +92,19 @@ class AppIconPainter extends CustomPainter {
       ..quadraticBezierTo(s * 0.17, -s * 0.17, s * 0.27, -s * 0.03)
       ..quadraticBezierTo(s * 0.10, s * 0.15, 0, 0)
       ..close();
-    canvas.drawPath(leafPath, Paint()..color = leaf);
+    canvas.drawPath(leafPath, Paint()..color = monochrome ? bin : leaf);
     canvas.drawLine(
       Offset(s * 0.03, -s * 0.005),
       Offset(s * 0.22, -s * 0.035),
-      Paint()
-        ..color = leafVein
+      (monochrome ? cutout : Paint()..color = leafVein)
         ..strokeWidth = s * 0.02
         ..strokeCap = StrokeCap.round,
     );
     canvas.restore();
+    if (monochrome) canvas.restore();
   }
 
   @override
   bool shouldRepaint(covariant AppIconPainter old) =>
-      old.withBackground != withBackground || old.inset != inset;
+      old.withBackground != withBackground || old.inset != inset || old.monochrome != monochrome;
 }

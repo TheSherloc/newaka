@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui' show Color;
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
@@ -18,12 +19,21 @@ class LocalNotificationsGateway implements NotificationGateway {
 
   static const _requestedKey = 'notification_permission_requested';
 
+  /// Einfarbiges Statusleisten-Icon, gerendert von test/tool/render_app_icon_test.dart
+  /// nach android/app/src/main/res/drawable-*/ic_notification.png.
+  static const androidSmallIcon = 'ic_notification';
+
+  /// Akzentfarbe der App (NewakaColors.accent); hier als Konstante, weil
+  /// diese Datei kein Flutter-Theme importieren soll.
+  static const accentColor = Color(0xFF1B5E3A);
+
   static const _android = AndroidNotificationDetails(
     'abfuhr_erinnerungen',
     'Abfuhr-Erinnerungen',
     channelDescription: 'Erinnerungen an bevorstehende Abholungen',
     importance: Importance.high,
     priority: Priority.high,
+    color: accentColor,
   );
   static const _details = NotificationDetails(
     android: _android,
@@ -40,7 +50,7 @@ class LocalNotificationsGateway implements NotificationGateway {
       tz.setLocalLocation(tz.getLocation('Europe/Berlin'));
     }
     const settings = InitializationSettings(
-      android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+      android: AndroidInitializationSettings(androidSmallIcon),
       iOS: DarwinInitializationSettings(
         requestAlertPermission: false,
         requestBadgePermission: false,
