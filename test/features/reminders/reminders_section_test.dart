@@ -1,3 +1,6 @@
+import 'package:abfallkalender/data/models/app_data.dart';
+import 'package:abfallkalender/data/models/pickup_event.dart';
+import 'package:abfallkalender/data/models/waste_type.dart';
 import 'package:abfallkalender/features/reminders/domain/notification_gateway.dart';
 import 'package:abfallkalender/features/reminders/ui/reminders_section.dart';
 import 'package:flutter/material.dart';
@@ -54,5 +57,35 @@ void main() {
         overrides: testOverrides(gateway: gateway));
     expect(find.text('Benachrichtigungen nicht erlaubt'), findsOneWidget);
     expect(find.text('Berechtigung anfragen'), findsOneWidget);
+  });
+
+  testWidgets('granting permission reschedules reminders', (tester) async {
+    final gateway = FakeNotificationGateway()
+      ..permission = NotificationPermission.denied
+      ..grantOnRequest = true;
+    final seeded = AppData(
+      events: [PickupEvent(date: DateTime(2099, 1, 5), wasteTypeId: 'bio', sourceId: 's')],
+      wasteTypes: const [WasteType(id: 'bio', displayName: 'Bio', color: 1, icon: 'leaf')],
+    );
+    await pumpApp(tester, const Scaffold(body: RemindersSection()),
+        overrides: testOverrides(gateway: gateway, events: InMemoryEventRepository(seeded)));
+    expect(find.textContaining('Systemeinstellungen'), findsOneWidget);
+    await tester.tap(find.text('Berechtigung anfragen'));
+    await tester.pumpAndSettle();
+    expect(gateway.cancelAllCount, 1);
+    expect(gateway.scheduled, isNotEmpty);
+  });
+
+  testWidgets('exact alarm button requests exact alarms', (tester) async {
+    final gateway = FakeNotificationGateway()
+      ..permission = NotificationPermission.granted
+      ..exactAllowed = false;
+    await pumpApp(tester, const Scaffold(body: RemindersSection()),
+        overrides: testOverrides(gateway: gateway));
+    expect(find.textContaining('Exakte Alarme sind nicht erlaubt'), findsOneWidget);
+    await tester.tap(find.text('Exakte Alarme erlauben'));
+    await tester.pumpAndSettle();
+    expect(gateway.exactRequestCount, 1);
+    expect(find.text('Exakte Alarme erlauben'), findsNothing);
   });
 }

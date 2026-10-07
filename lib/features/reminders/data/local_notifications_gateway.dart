@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/data/latest.dart' as tzdata;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -10,7 +11,12 @@ import '../domain/planned_notification.dart';
 import '../domain/reminder_coordinator.dart';
 
 class LocalNotificationsGateway implements NotificationGateway {
+  LocalNotificationsGateway(this._prefs);
+
+  final SharedPreferences _prefs;
   final _plugin = FlutterLocalNotificationsPlugin();
+
+  static const _requestedKey = 'notification_permission_requested';
 
   static const _android = AndroidNotificationDetails(
     'abfuhr_erinnerungen',
@@ -54,12 +60,10 @@ class LocalNotificationsGateway implements NotificationGateway {
   Future<bool> requestPermission() async {
     if (Platform.isAndroid) {
       final android = _androidPlugin;
-      final granted = await android?.requestNotificationsPermission() ?? false;
-      final exact = await android?.canScheduleExactNotifications() ?? true;
-      if (!exact) await android?.requestExactAlarmsPermission();
-      return granted;
+      return await android?.requestNotificationsPermission() ?? false;
     }
     if (Platform.isIOS) {
+      await _prefs.setBool(_requestedKey, true);
       return await _iosPlugin?.requestPermissions(alert: true, badge: true, sound: true) ?? false;
     }
     return false;
@@ -75,7 +79,9 @@ class LocalNotificationsGateway implements NotificationGateway {
     if (Platform.isIOS) {
       final options = await _iosPlugin?.checkPermissions();
       if (options == null) return NotificationPermission.unknown;
-      return options.isEnabled ? NotificationPermission.granted : NotificationPermission.denied;
+      if (options.isEnabled) return NotificationPermission.granted;
+      final requested = _prefs.getBool(_requestedKey) ?? false;
+      return requested ? NotificationPermission.denied : NotificationPermission.unknown;
     }
     return NotificationPermission.unknown;
   }
@@ -84,6 +90,12 @@ class LocalNotificationsGateway implements NotificationGateway {
   Future<bool> canScheduleExact() async {
     if (!Platform.isAndroid) return true;
     return await _androidPlugin?.canScheduleExactNotifications() ?? false;
+  }
+
+  @override
+  Future<void> requestExactAlarms() async {
+    if (!Platform.isAndroid) return;
+    await _androidPlugin?.requestExactAlarmsPermission();
   }
 
   @override

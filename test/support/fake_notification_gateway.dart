@@ -6,6 +6,7 @@ class FakeNotificationGateway implements NotificationGateway {
   final List<(String, String)> shown = [];
   int cancelAllCount = 0;
   int requestCount = 0;
+  int exactRequestCount = 0;
   NotificationPermission permission = NotificationPermission.unknown;
   bool exactAllowed = true;
   bool grantOnRequest = true;
@@ -25,6 +26,12 @@ class FakeNotificationGateway implements NotificationGateway {
 
   @override
   Future<bool> canScheduleExact() async => exactAllowed;
+
+  @override
+  Future<void> requestExactAlarms() async {
+    exactRequestCount++;
+    exactAllowed = true;
+  }
 
   @override
   Future<void> cancelAll() async {

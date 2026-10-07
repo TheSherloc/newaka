@@ -52,6 +52,8 @@ void main() {
     await tester.tap(find.text('Weiter'));
     await tester.pumpAndSettle();
     expect(gateway.requestCount, 1);
+    expect(gateway.cancelAllCount, 2);
+    expect(gateway.scheduled, isNotEmpty);
     expect(find.textContaining('94 Termine importiert'), findsOneWidget);
   });
 

@@ -412,6 +412,18 @@ abstract class AppLocalizations {
   /// **'Berechtigung anfragen'**
   String get requestPermission;
 
+  /// No description provided for @permissionDeniedHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Bitte erlaube Benachrichtigungen in den Systemeinstellungen deines Geräts, falls die Anfrage nicht mehr erscheint.'**
+  String get permissionDeniedHint;
+
+  /// No description provided for @requestExactAlarms.
+  ///
+  /// In de, this message translates to:
+  /// **'Exakte Alarme erlauben'**
+  String get requestExactAlarms;
+
   /// No description provided for @exactAlarmsMissing.
   ///
   /// In de, this message translates to:

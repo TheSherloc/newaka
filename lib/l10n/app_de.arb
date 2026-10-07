@@ -58,6 +58,8 @@
   "permissionDenied": "Benachrichtigungen nicht erlaubt",
   "permissionUnknown": "Berechtigung noch nicht angefragt",
   "requestPermission": "Berechtigung anfragen",
+  "permissionDeniedHint": "Bitte erlaube Benachrichtigungen in den Systemeinstellungen deines Geräts, falls die Anfrage nicht mehr erscheint.",
+  "requestExactAlarms": "Exakte Alarme erlauben",
   "exactAlarmsMissing": "Exakte Alarme sind nicht erlaubt, Erinnerungen können einige Minuten verzögert sein.",
   "notifyForType": "Erinnern",
   "editWasteType": "Abfuhrart bearbeiten",

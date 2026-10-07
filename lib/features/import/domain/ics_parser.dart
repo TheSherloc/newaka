@@ -8,6 +8,7 @@ class IcsParser {
   static bool looksLikeIcs(String text) => text.contains('BEGIN:VCALENDAR');
 
   static final _dateStart = RegExp(r'^(\d{4})(\d{2})(\d{2})');
+  static final _utcDateTime = RegExp(r'^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})Z$');
   static final _escape = RegExp(r'\\(.)');
 
   Result<List<RawPickup>> parse(String text) {
@@ -87,6 +88,14 @@ class IcsParser {
   }
 
   DateTime? _parseDate(String value) {
+    final utc = _utcDateTime.firstMatch(value.trim());
+    if (utc != null) {
+      final h = int.parse(utc[4]!), mi = int.parse(utc[5]!), s = int.parse(utc[6]!);
+      if (h < 24 && mi < 60 && s < 61) {
+        final local = DateTime.utc(int.parse(utc[1]!), int.parse(utc[2]!), int.parse(utc[3]!), h, mi, s).toLocal();
+        return DateTime(local.year, local.month, local.day);
+      }
+    }
     final m = _dateStart.firstMatch(value.trim());
     if (m == null) return null;
     final y = int.parse(m[1]!), mo = int.parse(m[2]!), d = int.parse(m[3]!);

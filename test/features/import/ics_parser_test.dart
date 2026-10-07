@@ -64,6 +64,19 @@ END:VCALENDAR
         [DateTime(2026, 1, 2), DateTime(2026, 1, 3), DateTime(2026, 1, 4)]);
   });
 
+  test('UTC date-times convert to the local date', () {
+    const text = '''
+BEGIN:VCALENDAR
+BEGIN:VEVENT
+DTSTART:20260104T230000Z
+SUMMARY:C
+END:VEVENT
+END:VCALENDAR
+''';
+    final local = DateTime.utc(2026, 1, 4, 23).toLocal();
+    expect(okValue(parser.parse(text)).single.date, DateTime(local.year, local.month, local.day));
+  });
+
   test('skips events without date or summary and reports warning', () {
     const text = '''
 BEGIN:VCALENDAR

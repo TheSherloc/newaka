@@ -7,6 +7,7 @@ import '../../../l10n/app_localizations.dart';
 import '../domain/notification_gateway.dart';
 import '../providers/permission_status_provider.dart';
 import '../providers/reminder_rules_provider.dart';
+import '../providers/reminder_sync.dart';
 import 'add_reminder_sheet.dart';
 
 class RemindersSection extends ConsumerWidget {
@@ -73,12 +74,38 @@ class RemindersSection extends ConsumerWidget {
             NotificationPermission.denied => l10n.permissionDenied,
             NotificationPermission.unknown => l10n.permissionUnknown,
           }),
-          subtitle: !exact ? Text(l10n.exactAlarmsMissing) : null,
+          subtitle: (permission == NotificationPermission.denied || !exact)
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (permission == NotificationPermission.denied) Text(l10n.permissionDeniedHint),
+                    if (!exact) Text(l10n.exactAlarmsMissing),
+                    if (!exact)
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: TextButton(
+                          onPressed: () async {
+                            await ref.read(notificationGatewayProvider).requestExactAlarms();
+                            ref.invalidate(exactAlarmsProvider);
+                          },
+                          child: Text(l10n.requestExactAlarms),
+                        ),
+                      ),
+                  ],
+                )
+              : null,
           trailing: permission == NotificationPermission.granted
               ? null
               : TextButton(
                   onPressed: () async {
-                    await ref.read(notificationGatewayProvider).requestPermission();
+                    final granted = await ref.read(notificationGatewayProvider).requestPermission();
+                    if (granted) {
+                      try {
+                        await ref.read(reminderSyncProvider).rescheduleAll();
+                      } catch (_) {
+                        // Planung ist best effort.
+                      }
+                    }
                     ref.invalidate(permissionStatusProvider);
                     ref.invalidate(exactAlarmsProvider);
                   },

@@ -14,7 +14,7 @@ Future<void> main() async {
 
   final documents = await getApplicationDocumentsDirectory();
   final prefs = await SharedPreferences.getInstance();
-  final gateway = LocalNotificationsGateway();
+  final gateway = LocalNotificationsGateway(prefs);
   await gateway.initialize();
 
   runApp(

@@ -183,6 +183,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get requestPermission => 'Berechtigung anfragen';
 
   @override
+  String get permissionDeniedHint =>
+      'Bitte erlaube Benachrichtigungen in den Systemeinstellungen deines Geräts, falls die Anfrage nicht mehr erscheint.';
+
+  @override
+  String get requestExactAlarms => 'Exakte Alarme erlauben';
+
+  @override
   String get exactAlarmsMissing =>
       'Exakte Alarme sind nicht erlaubt, Erinnerungen können einige Minuten verzögert sein.';
 

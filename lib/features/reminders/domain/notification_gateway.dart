@@ -7,6 +7,7 @@ abstract class NotificationGateway {
   Future<bool> requestPermission();
   Future<NotificationPermission> permissionStatus();
   Future<bool> canScheduleExact();
+  Future<void> requestExactAlarms();
   Future<void> cancelAll();
   Future<void> schedule(List<PlannedNotification> items);
   Future<void> showNow({required String title, required String body});
