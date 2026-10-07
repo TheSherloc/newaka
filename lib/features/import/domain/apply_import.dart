@@ -45,6 +45,10 @@ ImportOutcome applyImport({
   final added = incoming.values.where((e) => !existingKeys.contains(e.key));
 
   final events = [...base, ...added]..sort((a, b) => a.date.compareTo(b.date));
+  // Abfuhrarten ohne Termine verschwinden, damit abgewählte oder weggefallene
+  // Arten nicht in Einstellungen und Legende stehen bleiben.
+  final usedTypeIds = events.map((e) => e.wasteTypeId).toSet();
+  types.removeWhere((id, _) => !usedTypeIds.contains(id));
   return ImportOutcome(
     data: AppData(events: events, wasteTypes: types.values.toList()),
     imported: incoming.length,
