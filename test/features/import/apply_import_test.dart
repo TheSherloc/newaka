@@ -64,7 +64,7 @@ void main() {
     expect(out.data.events.single.note, 'alt');
   });
 
-  test('replace drops all events but keeps waste types', () {
+  test('replace drops all events and waste types that no longer have events', () {
     final current = AppData(
       events: [
         PickupEvent(date: DateTime(2026, 2, 1), wasteTypeId: 'papier', sourceId: 'url:x'),
@@ -74,7 +74,34 @@ void main() {
     final p = parsed('file:a', [RawPickup(date: DateTime(2026, 1, 2), rawName: 'Biotonne')]);
     final out = applyImport(current: current, parsed: p, mode: ImportMode.replace);
     expect(out.data.events.single.wasteTypeId, 'biotonne');
-    expect(out.data.wasteTypes.map((t) => t.id), containsAll(['papier', 'biotonne']));
+    expect(out.data.wasteTypes.map((t) => t.id), ['biotonne']);
+  });
+
+  test('replace keeps customisations of types that reappear', () {
+    final current = AppData(
+      events: [PickupEvent(date: DateTime(2026, 1, 2), wasteTypeId: 'biotonne', sourceId: 'file:a')],
+      wasteTypes: const [WasteType(id: 'biotonne', displayName: 'Meine Bio', color: 7, icon: 'tree')],
+    );
+    final p = parsed('file:a', [RawPickup(date: DateTime(2026, 3, 2), rawName: 'Biotonne')]);
+    final out = applyImport(current: current, parsed: p, mode: ImportMode.replace);
+    expect(out.data.wasteTypes.single.displayName, 'Meine Bio');
+    expect(out.data.wasteTypes.single.color, 7);
+  });
+
+  test('merge re-import of the same source without a type removes that type', () {
+    final current = AppData(
+      events: [
+        PickupEvent(date: DateTime(2026, 1, 2), wasteTypeId: 'biotonne', sourceId: 'file:a'),
+        PickupEvent(date: DateTime(2026, 1, 9), wasteTypeId: 'restmuell', sourceId: 'file:a'),
+      ],
+      wasteTypes: const [
+        WasteType(id: 'biotonne', displayName: 'Bio', color: 1, icon: 'leaf'),
+        WasteType(id: 'restmuell', displayName: 'Rest', color: 2, icon: 'trash'),
+      ],
+    );
+    final p = parsed('file:a', [RawPickup(date: DateTime(2026, 1, 9), rawName: 'Restmüll')]);
+    final out = applyImport(current: current, parsed: p, mode: ImportMode.merge);
+    expect(out.data.wasteTypes.map((t) => t.id), ['restmuell']);
   });
 
   test('events are sorted by date', () {
