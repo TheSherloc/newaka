@@ -1,17 +1,18 @@
-# abfallkalender
+# Newaka – Nur eine weitere Abfallkalender-App
 
-A new Flutter project.
+Newaka ist eine Flutter-App für iOS und Android: Abfuhrtermine per CSV, ICS oder ICS-URL importieren, im Kalender sehen und per lokaler Benachrichtigung erinnert werden. Alle Daten bleiben auf dem Gerät.
 
-## Getting Started
+## Entwicklung
 
-This project is a starting point for a Flutter application.
+- Flutter 3.47.x stable, JDK 17.
+- `flutter pub get`, `flutter gen-l10n`, `flutter test`, `flutter run`.
+- Design-Spec: `docs/superpowers/specs/2026-10-07-abfallkalender-app-design.md`.
 
-A few resources to get you started if this is your first Flutter project:
+## Release
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+- Android: `android/key.properties` nach Vorlage `key.properties.example` anlegen, dann `flutter build appbundle --release`.
+- iOS: Codemagic-Workflow `ios-testflight` (siehe `codemagic.yaml`), benötigt App-Store-Connect-API-Key in der Umgebungsgruppe `app_store_credentials`.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Testdaten
+
+`test/fixtures/augsburg_2026.ics` und `.csv` (Landkreis Augsburg, 2026).
