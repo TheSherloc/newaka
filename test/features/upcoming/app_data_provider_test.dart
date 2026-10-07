@@ -68,4 +68,20 @@ void main() {
     expect(repo.data.wasteTypes, isEmpty);
     expect(gateway.cancelAllCount, 1);
   });
+
+  test('mutation before load completes does not overwrite stored data', () async {
+    final repo = InMemoryEventRepository(AppData(
+      events: [PickupEvent(date: DateTime(2026, 1, 5), wasteTypeId: 'bio', sourceId: 'old')],
+      wasteTypes: const [WasteType(id: 'bio', displayName: 'Bio', color: 1, icon: 'leaf')],
+    ));
+    final c = createTestContainer(events: repo);
+    final parsed = ParsedImport(
+      sourceId: 'file:new',
+      pickups: [RawPickup(date: DateTime(2026, 2, 1), rawName: 'Altpapier')],
+      warnings: const [],
+    );
+    // Deliberately no `await c.read(appDataProvider.future)` here.
+    await c.read(appDataProvider.notifier).applyParsedImport(parsed, ImportMode.merge);
+    expect(repo.data.events.map((e) => e.key), containsAll(['2026-01-05|bio', '2026-02-01|altpapier']));
+  });
 }

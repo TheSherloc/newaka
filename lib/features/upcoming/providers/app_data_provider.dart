@@ -17,7 +17,7 @@ class AppDataNotifier extends AsyncNotifier<AppData> {
     return result.data;
   }
 
-  AppData get _current => state.value ?? AppData.empty;
+  Future<AppData> _loaded() => future;
 
   Future<void> _commit(AppData data) async {
     await ref.read(eventRepositoryProvider).save(data);
@@ -26,17 +26,22 @@ class AppDataNotifier extends AsyncNotifier<AppData> {
   }
 
   Future<ImportOutcome> applyParsedImport(ParsedImport parsed, ImportMode mode) async {
-    final outcome = applyImport(current: _current, parsed: parsed, mode: mode);
+    final current = await _loaded();
+    final outcome = applyImport(current: current, parsed: parsed, mode: mode);
     await _commit(outcome.data);
     return outcome;
   }
 
   Future<void> updateWasteType(WasteType type) async {
-    final types = _current.wasteTypes.map((t) => t.id == type.id ? type : t).toList();
-    await _commit(_current.copyWith(wasteTypes: types));
+    final current = await _loaded();
+    final types = current.wasteTypes.map((t) => t.id == type.id ? type : t).toList();
+    await _commit(current.copyWith(wasteTypes: types));
   }
 
-  Future<void> clearAll() => _commit(AppData.empty);
+  Future<void> clearAll() async {
+    await _loaded();
+    await _commit(AppData.empty);
+  }
 }
 
 final appDataProvider = AsyncNotifierProvider<AppDataNotifier, AppData>(AppDataNotifier.new);

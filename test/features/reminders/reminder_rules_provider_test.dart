@@ -82,4 +82,12 @@ void main() {
     await cAndroid.read(reminderSyncProvider).rescheduleAll();
     expect(android.scheduled.length, 200);
   });
+
+  test('add before load completes keeps saved rules', () async {
+    final settings = InMemorySettingsRepository()
+      ..rules = [const ReminderRule(id: 'saved', daysBefore: 2, hour: 9, minute: 0)];
+    final c = createTestContainer(settings: settings, events: InMemoryEventRepository(seeded));
+    await c.read(reminderRulesProvider.notifier).add(const ReminderRule(id: 'n1', daysBefore: 0, hour: 8, minute: 0));
+    expect(settings.rules!.map((r) => r.id), ['saved', 'n1']);
+  });
 }

@@ -11,8 +11,6 @@ class ReminderRulesNotifier extends AsyncNotifier<List<ReminderRule>> {
     return saved ?? ReminderRule.defaults();
   }
 
-  List<ReminderRule> get _current => state.value ?? ReminderRule.defaults();
-
   Future<void> _commit(List<ReminderRule> rules) async {
     await ref.read(settingsRepositoryProvider).saveRules(rules);
     state = AsyncData(rules);
@@ -20,14 +18,20 @@ class ReminderRulesNotifier extends AsyncNotifier<List<ReminderRule>> {
   }
 
   Future<void> add(ReminderRule rule) async {
-    if (_current.length >= ReminderRule.maxRules) return;
-    await _commit([..._current, rule]);
+    final current = await future;
+    if (current.length >= ReminderRule.maxRules) return;
+    await _commit([...current, rule]);
   }
 
-  Future<void> updateRule(ReminderRule rule) =>
-      _commit(_current.map((r) => r.id == rule.id ? rule : r).toList());
+  Future<void> updateRule(ReminderRule rule) async {
+    final current = await future;
+    await _commit(current.map((r) => r.id == rule.id ? rule : r).toList());
+  }
 
-  Future<void> remove(String id) => _commit(_current.where((r) => r.id != id).toList());
+  Future<void> remove(String id) async {
+    final current = await future;
+    await _commit(current.where((r) => r.id != id).toList());
+  }
 }
 
 final reminderRulesProvider =
