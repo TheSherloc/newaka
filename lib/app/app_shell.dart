@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../l10n/app_localizations.dart';
+import '../features/upcoming/ui/upcoming_screen.dart';
 import 'lifecycle_service.dart';
 
 class AppShell extends ConsumerStatefulWidget {
@@ -41,7 +42,7 @@ class _AppShellState extends ConsumerState<AppShell> with WidgetsBindingObserver
       body: IndexedStack(
         index: _index,
         children: const [
-          Center(key: Key('tab-home'), child: Text('home')),
+          UpcomingScreen(),
           Center(key: Key('tab-calendar'), child: Text('calendar')),
           Center(key: Key('tab-settings'), child: Text('settings')),
         ],
