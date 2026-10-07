@@ -94,6 +94,8 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(settings.subscription!.url, url);
+    expect(settings.subscription!.lastFetched, DateTime(2026, 1, 1, 12));
+    expect(http.requested.length, 1);
     expect(find.text('Erinnerungen erlauben'), findsNothing);
   });
 }

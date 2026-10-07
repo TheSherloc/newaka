@@ -34,9 +34,10 @@ ProviderContainer createTestContainer({
   Clock? clock,
   bool isIos = false,
   FakeHttpSource? http,
+  FakeFileSource? files,
 }) =>
     ProviderContainer(
       overrides: testOverrides(
-        events: events, settings: settings, gateway: gateway, clock: clock, isIos: isIos, http: http,
+        events: events, settings: settings, gateway: gateway, clock: clock, isIos: isIos, http: http, files: files,
       ),
     );
