@@ -143,7 +143,7 @@ ThemeData _base(Brightness brightness) {
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        minimumSize: const Size(48, 44),
+        minimumSize: const Size(48, 48),
         shape: radius14,
         textStyle: text.labelLarge,
       ),
@@ -198,6 +198,12 @@ Color accentFor(BuildContext context, int argb) {
   if (hsl.lightness >= 0.55) return color;
   return hsl.withLightness((hsl.lightness + 0.15).clamp(0.0, 1.0)).toColor();
 }
+
+/// Icon-Farbe auf einer gefüllten Fläche: weiß auf dunklen, Tinte auf hellen Farben.
+Color iconColorOn(Color fill) =>
+    ThemeData.estimateBrightnessForColor(fill) == Brightness.dark
+        ? Colors.white
+        : NewakaColors.ink;
 
 /// Weicher Schatten für die eine hervorgehobene Karte pro Bildschirm.
 List<BoxShadow> heroShadow(BuildContext context) {

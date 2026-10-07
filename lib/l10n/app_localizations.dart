@@ -232,12 +232,6 @@ abstract class AppLocalizations {
   /// **'Import prüfen'**
   String get importPreviewTitle;
 
-  /// No description provided for @importPreviewSummary.
-  ///
-  /// In de, this message translates to:
-  /// **'{count} Termine, {types} Abfuhrarten'**
-  String importPreviewSummary(int count, int types);
-
   /// No description provided for @importPreviewSelection.
   ///
   /// In de, this message translates to:

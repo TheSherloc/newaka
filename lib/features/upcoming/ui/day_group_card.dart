@@ -24,6 +24,7 @@ class DayGroupCard extends StatelessWidget {
     final soon = daysFromNow <= 1;
     final dayNumber = DateFormat('d', 'de').format(group.date);
     final weekday = DateFormat('EEE', 'de').format(group.date);
+    final month = DateFormat('MMM', 'de').format(group.date);
 
     return Card(
       child: Padding(
@@ -44,8 +45,9 @@ class DayGroupCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    weekday,
-                    style: theme.textTheme.labelMedium?.copyWith(color: scheme.onSurfaceVariant),
+                    '$weekday $month',
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.labelSmall?.copyWith(color: scheme.onSurfaceVariant),
                   ),
                 ],
               ),

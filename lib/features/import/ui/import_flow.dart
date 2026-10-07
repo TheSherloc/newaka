@@ -78,15 +78,19 @@ class ImportFlow {
           outcome = await ref
               .read(appDataProvider.notifier)
               .applyParsedImport(filterParsedImport(value, choice.excludedTypeIds), choice.mode);
+          await onApplied?.call();
+        } catch (e) {
+          if (context.mounted) await _showError(context, 'Speichern fehlgeschlagen: $e');
+          return false;
+        }
+        try {
           await settings.saveExcludedTypeIds(mergeExclusions(
             stored: stored,
             seenInImport: seenIds,
             excludedNow: choice.excludedTypeIds,
           ));
-          await onApplied?.call();
-        } catch (e) {
-          if (context.mounted) await _showError(context, 'Speichern fehlgeschlagen: $e');
-          return false;
+        } catch (_) {
+          // Die Auswahl zu merken ist Komfort; der Import selbst ist bereits gespeichert.
         }
         if (!context.mounted) return true;
         await ensureNotificationPermission(context, ref);

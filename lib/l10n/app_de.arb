@@ -24,8 +24,6 @@
   "save": "Speichern",
   "delete": "Löschen",
   "importPreviewTitle": "Import prüfen",
-  "importPreviewSummary": "{count} Termine, {types} Abfuhrarten",
-  "@importPreviewSummary": {"placeholders": {"count": {"type": "int"}, "types": {"type": "int"}}},
   "importPreviewSelection": "{selected} von {total} Terminen, {types} von {typesTotal} Abfuhrarten",
   "@importPreviewSelection": {"placeholders": {"selected": {"type": "int"}, "total": {"type": "int"}, "types": {"type": "int"}, "typesTotal": {"type": "int"}}},
   "importPreviewChooseTypes": "Welche Abfuhrarten sollen importiert werden?",

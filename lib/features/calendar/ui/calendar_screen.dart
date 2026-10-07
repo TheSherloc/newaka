@@ -84,7 +84,9 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
             calendarStyle: CalendarStyle(
               defaultTextStyle: theme.textTheme.bodyLarge!,
               weekendTextStyle: theme.textTheme.bodyLarge!,
-              outsideTextStyle: theme.textTheme.bodyLarge!.copyWith(color: scheme.outlineVariant),
+              outsideTextStyle: theme.textTheme.bodyLarge!.copyWith(
+                color: scheme.onSurfaceVariant.withValues(alpha: 0.55),
+              ),
               todayDecoration: BoxDecoration(
                 color: scheme.primaryContainer,
                 shape: BoxShape.circle,

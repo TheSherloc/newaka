@@ -4,10 +4,10 @@ import 'package:intl/intl.dart';
 
 import '../../../data/models/subscription.dart';
 import '../../../l10n/app_localizations.dart';
-import 'section_header.dart';
 import '../../import/providers/subscription_provider.dart';
 import '../../import/ui/import_flow.dart';
 import '../../upcoming/providers/app_data_provider.dart';
+import 'section_header.dart';
 
 class DataSection extends ConsumerWidget {
   const DataSection({super.key});

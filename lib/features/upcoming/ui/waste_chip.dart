@@ -15,6 +15,7 @@ class WasteChip extends StatelessWidget {
     final theme = Theme.of(context);
     final color = accentFor(context, type.color);
     final iconSize = compact ? 24.0 : 30.0;
+    final iconColor = iconColorOn(color);
     return Container(
       padding: EdgeInsets.fromLTRB(compact ? 4 : 6, compact ? 4 : 6, compact ? 10 : 14, compact ? 4 : 6),
       decoration: BoxDecoration(
@@ -31,7 +32,7 @@ class WasteChip extends StatelessWidget {
               color: color,
               borderRadius: BorderRadius.circular(compact ? 7 : 9),
             ),
-            child: Icon(wasteIconFor(type.icon), size: compact ? 15 : 18, color: Colors.white),
+            child: Icon(wasteIconFor(type.icon), size: compact ? 15 : 18, color: iconColor),
           ),
           SizedBox(width: compact ? 8 : 10),
           Flexible(
