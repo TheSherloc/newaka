@@ -97,8 +97,14 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In de, this message translates to:
-  /// **'Abfallkalender'**
+  /// **'Newaka'**
   String get appTitle;
+
+  /// No description provided for @appTagline.
+  ///
+  /// In de, this message translates to:
+  /// **'Nur eine weitere Abfallkalender-App'**
+  String get appTagline;
 
   /// No description provided for @tabHome.
   ///

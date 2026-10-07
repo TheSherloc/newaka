@@ -1,6 +1,7 @@
 {
   "@@locale": "de",
-  "appTitle": "Abfallkalender",
+  "appTitle": "Newaka",
+  "appTagline": "Nur eine weitere Abfallkalender-App",
   "tabHome": "Start",
   "tabCalendar": "Kalender",
   "tabSettings": "Einstellungen",

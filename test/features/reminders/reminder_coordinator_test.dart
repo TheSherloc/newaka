@@ -44,6 +44,7 @@ void main() {
     final lastReminder = gateway.scheduled[3].at;
     expect(hint.at, lastReminder.add(const Duration(days: 1)));
     expect(hint.body, contains('öffnen'));
+    expect(hint.title, 'Newaka');
   });
 
   test('no hint on android even when truncated', () async {

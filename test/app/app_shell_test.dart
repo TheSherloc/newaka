@@ -9,6 +9,7 @@ void main() {
   testWidgets('shows three tabs and switches', (tester) async {
     await pumpApp(tester, const AppShell(), overrides: testOverrides());
     expect(find.byType(NavigationBar), findsOneWidget);
+    expect(find.text('Newaka'), findsOneWidget); // AppBar-Titel der Startseite
     expect(find.text('Start'), findsOneWidget);
     expect(find.text('Kalender'), findsOneWidget);
     expect(find.text('Einstellungen'), findsOneWidget);

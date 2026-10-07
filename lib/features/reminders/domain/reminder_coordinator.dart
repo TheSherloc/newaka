@@ -19,7 +19,7 @@ class ReminderCoordinator {
   static const testNotificationId = 2;
   static const iosMaxPending = 60;
   static const androidMaxPending = 200;
-  static const refreshHintTitle = 'Abfallkalender';
+  static const refreshHintTitle = 'Newaka';
   static const refreshHintBody =
       'Bitte die App öffnen, damit die Erinnerungen aktuell bleiben.';
 

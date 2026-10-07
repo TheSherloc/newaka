@@ -10,7 +10,10 @@ class AppLocalizationsDe extends AppLocalizations {
   AppLocalizationsDe([String locale = 'de']) : super(locale);
 
   @override
-  String get appTitle => 'Abfallkalender';
+  String get appTitle => 'Newaka';
+
+  @override
+  String get appTagline => 'Nur eine weitere Abfallkalender-App';
 
   @override
   String get tabHome => 'Start';

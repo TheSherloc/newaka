@@ -38,6 +38,11 @@ class _AboutSectionState extends State<AboutSection> {
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
           child: Text(l10n.sectionAbout, style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.primary)),
         ),
+        ListTile(
+          leading: const Icon(Icons.recycling_outlined),
+          title: Text(l10n.appTitle, style: theme.textTheme.titleMedium),
+          subtitle: Text(l10n.appTagline),
+        ),
         ListTile(leading: const Icon(Icons.info_outline), title: Text(l10n.version(_version))),
         ListTile(
           leading: const Icon(Icons.article_outlined),
