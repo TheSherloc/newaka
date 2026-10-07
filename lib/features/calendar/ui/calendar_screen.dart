@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../../app/infrastructure_providers.dart';
@@ -43,6 +44,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
+    final scheme = theme.colorScheme;
     final data = ref.watch(appDataProvider).value;
     final byDay = data == null ? const <String, List<WasteType>>{} : eventsByDay(data);
     final types = data?.wasteTypes ?? const <WasteType>[];
@@ -56,7 +58,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 0, 16, 24),
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 28),
         children: [
           TableCalendar<WasteType>(
             locale: 'de_DE',
@@ -65,16 +67,39 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
             focusedDay: _focused,
             startingDayOfWeek: StartingDayOfWeek.monday,
             availableCalendarFormats: const {CalendarFormat.month: 'Monat'},
-            headerStyle: const HeaderStyle(titleCentered: true, formatButtonVisible: false),
+            rowHeight: 56,
+            daysOfWeekHeight: 28,
+            headerStyle: HeaderStyle(
+              titleCentered: true,
+              formatButtonVisible: false,
+              titleTextStyle: theme.textTheme.titleMedium!,
+              leftChevronIcon: Icon(Icons.chevron_left_rounded, color: scheme.onSurfaceVariant),
+              rightChevronIcon: Icon(Icons.chevron_right_rounded, color: scheme.onSurfaceVariant),
+              headerPadding: const EdgeInsets.symmetric(vertical: 10),
+            ),
+            daysOfWeekStyle: DaysOfWeekStyle(
+              weekdayStyle: theme.textTheme.labelMedium!.copyWith(color: scheme.onSurfaceVariant),
+              weekendStyle: theme.textTheme.labelMedium!.copyWith(color: scheme.onSurfaceVariant),
+            ),
             calendarStyle: CalendarStyle(
+              defaultTextStyle: theme.textTheme.bodyLarge!,
+              weekendTextStyle: theme.textTheme.bodyLarge!,
+              outsideTextStyle: theme.textTheme.bodyLarge!.copyWith(color: scheme.outlineVariant),
               todayDecoration: BoxDecoration(
-                color: theme.colorScheme.primaryContainer,
+                color: scheme.primaryContainer,
                 shape: BoxShape.circle,
               ),
-              todayTextStyle: TextStyle(color: theme.colorScheme.onPrimaryContainer),
-              selectedDecoration: BoxDecoration(color: theme.colorScheme.primary, shape: BoxShape.circle),
+              todayTextStyle: theme.textTheme.bodyLarge!.copyWith(
+                color: scheme.onPrimaryContainer,
+                fontWeight: FontWeight.w700,
+              ),
+              selectedDecoration: BoxDecoration(color: scheme.primary, shape: BoxShape.circle),
+              selectedTextStyle: theme.textTheme.bodyLarge!.copyWith(
+                color: scheme.onPrimary,
+                fontWeight: FontWeight.w700,
+              ),
               markersMaxCount: 4,
-              cellMargin: const EdgeInsets.all(4),
+              cellMargin: const EdgeInsets.all(5),
             ),
             selectedDayPredicate: (day) => isSameDay(day, _selected),
             eventLoader: (day) => byDay[day.isoDate] ?? const [],
@@ -86,18 +111,22 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
             calendarBuilders: CalendarBuilders<WasteType>(
               markerBuilder: (context, day, events) {
                 if (events.isEmpty) return null;
+                final onSelected = isSameDay(day, _selected);
                 return Positioned(
-                  bottom: 4,
+                  bottom: 5,
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       for (final t in events.take(4))
                         Container(
                           key: Key('marker-${day.isoDate}-${t.id}'),
-                          width: 7,
-                          height: 7,
-                          margin: const EdgeInsets.symmetric(horizontal: 1),
-                          decoration: BoxDecoration(color: accentFor(context, t.color), shape: BoxShape.circle),
+                          width: 6,
+                          height: 6,
+                          margin: const EdgeInsets.symmetric(horizontal: 1.5),
+                          decoration: BoxDecoration(
+                            color: onSelected ? scheme.onPrimary : accentFor(context, t.color),
+                            shape: BoxShape.circle,
+                          ),
                         ),
                     ],
                   ),
@@ -105,16 +134,30 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
               },
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 20),
           Card(
             child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: selectedTypes.isEmpty
-                  ? Text(l10n.noPickupsThisDay, style: theme.textTheme.bodyMedium)
-                  : Wrap(spacing: 8, runSpacing: 8, children: [for (final t in selectedTypes) WasteChip(type: t)]),
+              padding: const EdgeInsets.fromLTRB(18, 16, 18, 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    DateFormat('EEEE, d. MMMM', 'de').format(_selected),
+                    style: theme.textTheme.titleMedium,
+                  ),
+                  const SizedBox(height: 10),
+                  if (selectedTypes.isEmpty)
+                    Text(
+                      l10n.noPickupsThisDay,
+                      style: theme.textTheme.bodyMedium?.copyWith(color: scheme.onSurfaceVariant),
+                    )
+                  else
+                    Wrap(spacing: 8, runSpacing: 8, children: [for (final t in selectedTypes) WasteChip(type: t)]),
+                ],
+              ),
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 24),
           if (types.isNotEmpty) Legend(types: types),
         ],
       ),

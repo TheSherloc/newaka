@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../../../data/models/subscription.dart';
 import '../../../l10n/app_localizations.dart';
+import 'section_header.dart';
 import '../../import/providers/subscription_provider.dart';
 import '../../import/ui/import_flow.dart';
 import '../../upcoming/providers/app_data_provider.dart';
@@ -21,18 +22,15 @@ class DataSection extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
-          child: Text(l10n.sectionData, style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.primary)),
-        ),
+        SectionHeader(l10n.sectionData),
         ListTile(
-          leading: const Icon(Icons.upload_file_outlined),
+          leading: const LeadingIcon(Icons.upload_file_outlined),
           title: Text(l10n.importFile),
           onTap: () => flow.importFromFile(context),
         ),
         _SubscriptionTile(sub: sub, onEnterUrl: () => flow.importFromUrl(context)),
         ListTile(
-          leading: Icon(Icons.delete_forever_outlined, color: theme.colorScheme.error),
+          leading: LeadingIcon(Icons.delete_forever_outlined, color: theme.colorScheme.error, background: theme.colorScheme.errorContainer),
           title: Text(l10n.deleteAllData, style: TextStyle(color: theme.colorScheme.error)),
           onTap: () async {
             final confirmed = await showDialog<bool>(
@@ -75,7 +73,7 @@ class _SubscriptionTile extends ConsumerWidget {
     final s = sub;
     if (s == null) {
       return ListTile(
-        leading: const Icon(Icons.link),
+        leading: const LeadingIcon(Icons.link),
         title: Text(l10n.subscription),
         subtitle: Text(l10n.subscriptionNone),
         trailing: TextButton(onPressed: onEnterUrl, child: Text(l10n.enterUrl)),
@@ -88,7 +86,7 @@ class _SubscriptionTile extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ListTile(
-          leading: const Icon(Icons.link),
+          leading: const LeadingIcon(Icons.link),
           title: Text(s.url, maxLines: 1, overflow: TextOverflow.ellipsis),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

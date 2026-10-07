@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../app/infrastructure_providers.dart';
 import '../../../data/models/reminder_rule.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../settings/ui/section_header.dart';
 import '../domain/notification_gateway.dart';
 import '../providers/permission_status_provider.dart';
 import '../providers/reminder_rules_provider.dart';
@@ -25,13 +26,10 @@ class RemindersSection extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
-          child: Text(l10n.sectionReminders, style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.primary)),
-        ),
+        SectionHeader(l10n.sectionReminders),
         for (final rule in rules)
           ListTile(
-            leading: Icon(rule.daysBefore == 0 ? Icons.wb_sunny_outlined : Icons.nights_stay_outlined),
+            leading: LeadingIcon(rule.daysBefore == 0 ? Icons.wb_sunny_outlined : Icons.nights_stay_outlined),
             title: Text(daysBeforeLabel(l10n, rule.daysBefore)),
             subtitle: Text(l10n.reminderAt(formatRuleTime(rule))),
             onTap: () async {
@@ -56,7 +54,7 @@ class RemindersSection extends ConsumerWidget {
             ),
           ),
         ListTile(
-          leading: const Icon(Icons.add),
+          leading: const LeadingIcon(Icons.add),
           title: Text(rules.length >= ReminderRule.maxRules ? l10n.maxRemindersReached : l10n.addReminder),
           enabled: rules.length < ReminderRule.maxRules,
           onTap: () async {
@@ -65,9 +63,10 @@ class RemindersSection extends ConsumerWidget {
           },
         ),
         ListTile(
-          leading: Icon(
+          leading: LeadingIcon(
             permission == NotificationPermission.granted ? Icons.notifications_active_outlined : Icons.notifications_off_outlined,
             color: permission == NotificationPermission.denied ? theme.colorScheme.error : null,
+            background: permission == NotificationPermission.denied ? theme.colorScheme.errorContainer : null,
           ),
           title: Text(switch (permission) {
             NotificationPermission.granted => l10n.permissionGranted,
@@ -113,7 +112,7 @@ class RemindersSection extends ConsumerWidget {
                 ),
         ),
         ListTile(
-          leading: const Icon(Icons.send_outlined),
+          leading: const LeadingIcon(Icons.send_outlined),
           title: Text(l10n.sendTestNotification),
           onTap: () => ref.read(notificationGatewayProvider).showNow(
                 title: l10n.testNotificationTitle,
