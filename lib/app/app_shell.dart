@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../l10n/app_localizations.dart';
+import '../features/calendar/ui/calendar_screen.dart';
 import '../features/upcoming/ui/upcoming_screen.dart';
 import 'lifecycle_service.dart';
 
@@ -43,7 +44,7 @@ class _AppShellState extends ConsumerState<AppShell> with WidgetsBindingObserver
         index: _index,
         children: const [
           UpcomingScreen(),
-          Center(key: Key('tab-calendar'), child: Text('calendar')),
+          CalendarScreen(key: Key('tab-calendar')),
           Center(key: Key('tab-settings'), child: Text('settings')),
         ],
       ),
