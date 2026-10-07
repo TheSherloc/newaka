@@ -7,6 +7,7 @@ import 'package:timezone/timezone.dart' as tz;
 
 import '../domain/notification_gateway.dart';
 import '../domain/planned_notification.dart';
+import '../domain/reminder_coordinator.dart';
 
 class LocalNotificationsGateway implements NotificationGateway {
   final _plugin = FlutterLocalNotificationsPlugin();
@@ -94,19 +95,25 @@ class LocalNotificationsGateway implements NotificationGateway {
     final mode = exact
         ? AndroidScheduleMode.exactAllowWhileIdle
         : AndroidScheduleMode.inexactAllowWhileIdle;
+    final now = DateTime.now();
     for (final n in items) {
-      await _plugin.zonedSchedule(
-        id: n.id,
-        scheduledDate: tz.TZDateTime.from(n.at, tz.local),
-        notificationDetails: _details,
-        androidScheduleMode: mode,
-        title: n.title,
-        body: n.body,
-      );
+      if (!n.at.isAfter(now)) continue;
+      try {
+        await _plugin.zonedSchedule(
+          id: n.id,
+          scheduledDate: tz.TZDateTime.from(n.at, tz.local),
+          notificationDetails: _details,
+          androidScheduleMode: mode,
+          title: n.title,
+          body: n.body,
+        );
+      } catch (_) {
+        continue;
+      }
     }
   }
 
   @override
   Future<void> showNow({required String title, required String body}) =>
-      _plugin.show(id: 2, title: title, body: body, notificationDetails: _details);
+      _plugin.show(id: ReminderCoordinator.testNotificationId,title: title, body: body, notificationDetails: _details);
 }
