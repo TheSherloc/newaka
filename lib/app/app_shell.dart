@@ -25,9 +25,16 @@ class _AppShellState extends ConsumerState<AppShell> with WidgetsBindingObserver
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     Future.microtask(() async {
-      await ref.read(appDataProvider.future);
+      var corrupt = false;
+      try {
+        await ref.read(appDataProvider.future);
+        corrupt = ref.read(appDataProvider.notifier).wasCorruptOnLoad;
+      } catch (_) {
+        // Ladefehler werden vom AppDataProvider-Zustand in der UI angezeigt;
+        // der Start-Ablauf muss trotzdem weiterlaufen.
+      }
       if (!mounted) return;
-      if (ref.read(appDataProvider.notifier).wasCorruptOnLoad) {
+      if (corrupt) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(AppLocalizations.of(context).corruptDataNotice),
