@@ -57,6 +57,53 @@ void main() {
     expect(find.textContaining('94 Termine importiert'), findsOneWidget);
   });
 
+  testWidgets('file import: deselected types are not imported and remembered', (tester) async {
+    final files = FakeFileSource()..next = PickedFile(name: 'a.ics', bytes: ics);
+    final repo = InMemoryEventRepository();
+    final settings = InMemorySettingsRepository();
+    final gateway = FakeNotificationGateway()..permission = NotificationPermission.granted;
+    await pumpApp(tester, const _Host(),
+        overrides: testOverrides(files: files, events: repo, settings: settings, gateway: gateway));
+
+    await tester.tap(find.text('Datei importieren'));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('94 von 94 Terminen'), findsOneWidget);
+
+    await tester.tap(find.byKey(const Key('type-check-biotonne')));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('67 von 94 Terminen'), findsOneWidget);
+    expect(find.textContaining('4 von 5 Abfuhrarten'), findsOneWidget);
+
+    await tester.tap(find.text('Zusammenführen'));
+    await tester.pumpAndSettle();
+
+    expect(repo.data.events.length, 67);
+    expect(repo.data.wasteTypes.any((t) => t.id == 'biotonne'), isFalse);
+    expect(settings.excludedTypeIds, {'biotonne'});
+    expect(find.textContaining('67 Termine importiert'), findsOneWidget);
+  });
+
+  testWidgets('file import: stored exclusion is pre-applied and no selection disables import', (tester) async {
+    final files = FakeFileSource()..next = PickedFile(name: 'a.ics', bytes: ics);
+    final settings = InMemorySettingsRepository()..excludedTypeIds = {'biotonne'};
+    await pumpApp(tester, const _Host(), overrides: testOverrides(files: files, settings: settings));
+
+    await tester.tap(find.text('Datei importieren'));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('67 von 94 Terminen'), findsOneWidget);
+
+    for (final id in ['restmuell_tonne', 'wertstofftonne_gelber_container', 'altpapier_tonne', 'problemabfallsammlung']) {
+      final box = find.byKey(Key('type-check-$id'));
+      await tester.ensureVisible(box);
+      await tester.pumpAndSettle();
+      await tester.tap(box);
+      await tester.pumpAndSettle();
+    }
+    expect(find.textContaining('0 von 94 Terminen'), findsOneWidget);
+    final merge = tester.widget<FilledButton>(find.widgetWithText(FilledButton, 'Zusammenführen'));
+    expect(merge.onPressed, isNull);
+  });
+
   testWidgets('file import: cancel in preview changes nothing', (tester) async {
     final files = FakeFileSource()..next = PickedFile(name: 'a.ics', bytes: ics);
     final repo = InMemoryEventRepository();

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../app/theme.dart';
 import '../../../l10n/app_localizations.dart';
 import '../domain/upcoming_groups.dart';
 import 'next_pickup_card.dart' show relativeLabel;
 import 'waste_chip.dart';
 
+/// Ein Tag in der Liste: Datumsblock links, relative Angabe und Kacheln rechts.
 class DayGroupCard extends StatelessWidget {
   const DayGroupCard({
     super.key,
@@ -20,47 +20,57 @@ class DayGroupCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
-    final color = accentFor(context, group.types.first.color);
-    final title = daysFromNow <= 1
-        ? relativeLabel(l10n, daysFromNow)
-        : DateFormat('EEEE, d. MMM', 'de').format(group.date);
-    final subtitle = daysFromNow <= 1
-        ? DateFormat('d. MMMM', 'de').format(group.date)
-        : relativeLabel(l10n, daysFromNow);
+    final scheme = theme.colorScheme;
+    final soon = daysFromNow <= 1;
+    final dayNumber = DateFormat('d', 'de').format(group.date);
+    final weekday = DateFormat('EEE', 'de').format(group.date);
+    final month = DateFormat('MMM', 'de').format(group.date);
 
     return Card(
-      clipBehavior: Clip.antiAlias,
-      child: IntrinsicHeight(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(width: 6, color: color),
+            SizedBox(
+              width: 48,
+              child: Column(
+                children: [
+                  Text(
+                    dayNumber,
+                    style: theme.textTheme.headlineSmall?.copyWith(
+                      color: soon ? scheme.primary : scheme.onSurface,
+                      height: 1,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    '$weekday $month',
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.labelSmall?.copyWith(color: scheme.onSurfaceVariant),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 14),
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 12,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(title, style: theme.textTheme.titleMedium),
-                    Text(
-                      subtitle,
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.onSurfaceVariant,
-                      ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    relativeLabel(l10n, daysFromNow),
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      color: soon ? scheme.primary : scheme.onSurfaceVariant,
+                      fontWeight: FontWeight.w600,
                     ),
-                    const SizedBox(height: 8),
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: [
-                        for (final t in group.types) WasteChip(type: t),
-                      ],
-                    ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [for (final t in group.types) WasteChip(type: t, compact: true)],
+                  ),
+                ],
               ),
             ),
           ],

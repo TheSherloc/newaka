@@ -8,6 +8,7 @@ import '../../../l10n/app_localizations.dart';
 import '../../upcoming/providers/app_data_provider.dart';
 import '../../waste_types/domain/waste_type_catalog.dart';
 import '../domain/apply_import.dart';
+import '../domain/import_selection.dart';
 import '../domain/parsed_import.dart';
 import '../providers/subscription_provider.dart';
 import 'import_preview_dialog.dart';
@@ -56,19 +57,40 @@ class ImportFlow {
       case Ok(:final value):
         final current = ref.read(appDataProvider).value?.wasteTypes ?? const <WasteType>[];
         final byId = {for (final t in current) t.id: t};
+        final seenIds = <String>{};
         final resolved = [
           for (final name in value.distinctRawNames)
-            byId[WasteTypeCatalog.normalizeId(name)] ?? WasteTypeCatalog.createDefault(name),
+            if (seenIds.add(WasteTypeCatalog.normalizeId(name)))
+              byId[WasteTypeCatalog.normalizeId(name)] ?? WasteTypeCatalog.createDefault(name),
         ];
-        final mode = await showImportPreviewDialog(context, value, resolved);
-        if (mode == null) return false;
+        final settings = ref.read(settingsRepositoryProvider);
+        final stored = await settings.loadExcludedTypeIds();
+        if (!context.mounted) return false;
+        final choice = await showImportPreviewDialog(
+          context,
+          value,
+          countByType(value, resolved),
+          initiallyExcluded: stored,
+        );
+        if (choice == null) return false;
         final ImportOutcome outcome;
         try {
-          outcome = await ref.read(appDataProvider.notifier).applyParsedImport(value, mode);
+          outcome = await ref
+              .read(appDataProvider.notifier)
+              .applyParsedImport(filterParsedImport(value, choice.excludedTypeIds), choice.mode);
           await onApplied?.call();
         } catch (e) {
           if (context.mounted) await _showError(context, 'Speichern fehlgeschlagen: $e');
           return false;
+        }
+        try {
+          await settings.saveExcludedTypeIds(mergeExclusions(
+            stored: stored,
+            seenInImport: seenIds,
+            excludedNow: choice.excludedTypeIds,
+          ));
+        } catch (_) {
+          // Die Auswahl zu merken ist Komfort; der Import selbst ist bereits gespeichert.
         }
         if (!context.mounted) return true;
         await ensureNotificationPermission(context, ref);

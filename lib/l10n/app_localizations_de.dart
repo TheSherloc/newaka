@@ -84,8 +84,22 @@ class AppLocalizationsDe extends AppLocalizations {
   String get importPreviewTitle => 'Import prüfen';
 
   @override
-  String importPreviewSummary(int count, int types) {
-    return '$count Termine, $types Abfuhrarten';
+  String importPreviewSelection(
+    int selected,
+    int total,
+    int types,
+    int typesTotal,
+  ) {
+    return '$selected von $total Terminen, $types von $typesTotal Abfuhrarten';
+  }
+
+  @override
+  String get importPreviewChooseTypes =>
+      'Welche Abfuhrarten sollen importiert werden?';
+
+  @override
+  String importTypeCount(int count) {
+    return '$count Termine';
   }
 
   @override

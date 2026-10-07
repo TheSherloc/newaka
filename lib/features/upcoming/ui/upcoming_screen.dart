@@ -36,13 +36,13 @@ class UpcomingScreen extends ConsumerWidget {
           }
           final today = now.dateOnly;
           return ListView(
-            padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+            padding: const EdgeInsets.fromLTRB(20, 4, 20, 28),
             children: [
               NextPickupCard(group: groups.first, daysFromNow: daysBetween(today, groups.first.date)),
-              const SizedBox(height: 16),
+              const SizedBox(height: 20),
               for (final g in groups.skip(1)) ...[
                 DayGroupCard(group: g, daysFromNow: daysBetween(today, g.date)),
-                const SizedBox(height: 8),
+                const SizedBox(height: 10),
               ],
             ],
           );
@@ -59,23 +59,13 @@ class _NoUpcoming extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final theme = Theme.of(context);
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(32),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.event_available_outlined, size: 72, color: theme.colorScheme.primary),
-            const SizedBox(height: 24),
-            Text(l10n.noUpcoming, style: theme.textTheme.headlineSmall, textAlign: TextAlign.center),
-            const SizedBox(height: 12),
-            Text(l10n.noUpcomingHint, style: theme.textTheme.bodyMedium, textAlign: TextAlign.center),
-            const SizedBox(height: 32),
-            FilledButton.icon(onPressed: onImportFile, icon: const Icon(Icons.upload_file), label: Text(l10n.importFile)),
-          ],
-        ),
-      ),
+    return EmptyScreen(
+      icon: Icons.event_available_outlined,
+      title: l10n.noUpcoming,
+      body: l10n.noUpcomingHint,
+      primaryLabel: l10n.importFile,
+      primaryIcon: Icons.upload_file_outlined,
+      onPrimary: onImportFile,
     );
   }
 }

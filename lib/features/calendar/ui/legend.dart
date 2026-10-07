@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../app/theme.dart';
 import '../../../data/models/waste_type.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../waste_types/ui/waste_icons.dart';
+import '../../upcoming/ui/waste_chip.dart';
 
 class Legend extends StatelessWidget {
   const Legend({super.key, required this.types});
@@ -15,22 +14,15 @@ class Legend extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(AppLocalizations.of(context).legend, style: theme.textTheme.labelLarge),
-        const SizedBox(height: 8),
+        Text(
+          AppLocalizations.of(context).legend,
+          style: theme.textTheme.labelLarge?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+        ),
+        const SizedBox(height: 10),
         Wrap(
-          spacing: 16,
+          spacing: 8,
           runSpacing: 8,
-          children: [
-            for (final t in types)
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(wasteIconFor(t.icon), size: 16, color: accentFor(context, t.color)),
-                  const SizedBox(width: 4),
-                  Text(t.displayName, style: theme.textTheme.bodySmall),
-                ],
-              ),
-          ],
+          children: [for (final t in types) WasteChip(type: t, compact: true)],
         ),
       ],
     );

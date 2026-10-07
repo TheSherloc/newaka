@@ -33,6 +33,21 @@ void main() {
     expect(c.read(appDataProvider).value!.events.first.sourceId, 'url:landkreis.example');
   });
 
+  test('refresh applies the stored type exclusions', () async {
+    final http = FakeHttpSource()..responses[url] = ics;
+    final settings = InMemorySettingsRepository()
+      ..subscription = const Subscription(url: url)
+      ..excludedTypeIds = {'biotonne'};
+    final c = createTestContainer(http: http, settings: settings);
+    await c.read(appDataProvider.future);
+    await c.read(subscriptionProvider.future);
+
+    expect(await c.read(subscriptionProvider.notifier).refresh(force: true), isTrue);
+    final data = c.read(appDataProvider).value!;
+    expect(data.events.length, 67);
+    expect(data.wasteTypes.any((t) => t.id == 'biotonne'), isFalse);
+  });
+
   test('refresh skips when fetched less than 24h ago unless forced', () async {
     final http = FakeHttpSource()..responses[url] = ics;
     final settings = InMemorySettingsRepository()

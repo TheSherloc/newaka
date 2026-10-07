@@ -16,14 +16,11 @@ class SettingsScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: Text(l10n.tabSettings)),
       body: ListView(
-        padding: const EdgeInsets.only(bottom: 24),
+        padding: const EdgeInsets.only(bottom: 32),
         children: const [
           RemindersSection(),
-          Divider(),
           WasteTypesSection(),
-          Divider(),
           DataSection(),
-          Divider(),
           AboutSection(),
         ],
       ),

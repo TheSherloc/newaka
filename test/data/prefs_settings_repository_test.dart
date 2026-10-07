@@ -27,6 +27,14 @@ void main() {
     expect(await repo.loadSubscription(), isNull);
   });
 
+  test('excluded type ids roundtrip, empty when never saved', () async {
+    SharedPreferences.setMockInitialValues({});
+    final repo = PrefsSettingsRepository(await SharedPreferences.getInstance());
+    expect(await repo.loadExcludedTypeIds(), isEmpty);
+    await repo.saveExcludedTypeIds({'biotonne', 'glas'});
+    expect(await repo.loadExcludedTypeIds(), {'biotonne', 'glas'});
+  });
+
   test('last schedule run roundtrip', () async {
     SharedPreferences.setMockInitialValues({});
     final repo = PrefsSettingsRepository(await SharedPreferences.getInstance());

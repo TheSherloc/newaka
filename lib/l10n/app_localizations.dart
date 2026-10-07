@@ -232,11 +232,28 @@ abstract class AppLocalizations {
   /// **'Import prüfen'**
   String get importPreviewTitle;
 
-  /// No description provided for @importPreviewSummary.
+  /// No description provided for @importPreviewSelection.
   ///
   /// In de, this message translates to:
-  /// **'{count} Termine, {types} Abfuhrarten'**
-  String importPreviewSummary(int count, int types);
+  /// **'{selected} von {total} Terminen, {types} von {typesTotal} Abfuhrarten'**
+  String importPreviewSelection(
+    int selected,
+    int total,
+    int types,
+    int typesTotal,
+  );
+
+  /// No description provided for @importPreviewChooseTypes.
+  ///
+  /// In de, this message translates to:
+  /// **'Welche Abfuhrarten sollen importiert werden?'**
+  String get importPreviewChooseTypes;
+
+  /// No description provided for @importTypeCount.
+  ///
+  /// In de, this message translates to:
+  /// **'{count} Termine'**
+  String importTypeCount(int count);
 
   /// No description provided for @importPreviewRange.
   ///

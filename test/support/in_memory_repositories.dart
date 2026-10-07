@@ -29,7 +29,13 @@ class InMemorySettingsRepository implements SettingsRepository {
   List<ReminderRule>? rules;
   Subscription? subscription;
   DateTime? lastScheduleRun;
+  Set<String> excludedTypeIds = {};
 
+  @override
+  Future<Set<String>> loadExcludedTypeIds() async => Set.of(excludedTypeIds);
+  @override
+  Future<void> saveExcludedTypeIds(Set<String> ids) async =>
+      excludedTypeIds = Set.of(ids);
   @override
   Future<List<ReminderRule>?> loadRules() async => rules;
   @override

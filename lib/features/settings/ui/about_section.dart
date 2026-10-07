@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../../l10n/app_localizations.dart';
+import 'section_header.dart';
 
 class AboutSection extends StatefulWidget {
   const AboutSection({super.key});
@@ -34,18 +35,15 @@ class _AboutSectionState extends State<AboutSection> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
-          child: Text(l10n.sectionAbout, style: theme.textTheme.titleMedium?.copyWith(color: theme.colorScheme.primary)),
-        ),
+        SectionHeader(l10n.sectionAbout),
         ListTile(
-          leading: const Icon(Icons.recycling_outlined),
+          leading: const LeadingIcon(Icons.recycling_outlined),
           title: Text(l10n.appTitle, style: theme.textTheme.titleMedium),
           subtitle: Text(l10n.appTagline),
         ),
-        ListTile(leading: const Icon(Icons.info_outline), title: Text(l10n.version(_version))),
+        ListTile(leading: const LeadingIcon(Icons.info_outline), title: Text(l10n.version(_version))),
         ListTile(
-          leading: const Icon(Icons.article_outlined),
+          leading: const LeadingIcon(Icons.article_outlined),
           title: Text(l10n.licenses),
           onTap: () => showLicensePage(context: context, applicationName: l10n.appTitle),
         ),
