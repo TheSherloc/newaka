@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -88,5 +89,31 @@ void main() {
     expect(settings.subscription, isNull);
     expect(c.read(subscriptionProvider).value, isNull);
     expect(c.read(appDataProvider).value!.events.length, 94);
+  });
+
+  test('remove during an in-flight refresh does not resurrect the subscription', () async {
+    final http = FakeHttpSource()..responses[url] = ics..gate = Completer<void>();
+    final settings = InMemorySettingsRepository()..subscription = const Subscription(url: url);
+    final c = createTestContainer(http: http, settings: settings);
+    await c.read(appDataProvider.future);
+    await c.read(subscriptionProvider.future);
+    final pending = c.read(subscriptionProvider.notifier).refresh(force: true);
+    await c.read(subscriptionProvider.notifier).remove();
+    http.gate!.complete();
+    expect(await pending, isFalse);
+    expect(settings.subscription, isNull);
+    expect(c.read(subscriptionProvider).value, isNull);
+  });
+
+  test('concurrent refresh calls share one fetch', () async {
+    final http = FakeHttpSource()..responses[url] = ics;
+    final settings = InMemorySettingsRepository()..subscription = const Subscription(url: url);
+    final c = createTestContainer(http: http, settings: settings);
+    await c.read(appDataProvider.future);
+    await c.read(subscriptionProvider.future);
+    final n = c.read(subscriptionProvider.notifier);
+    final results = await Future.wait([n.refresh(force: true), n.refresh(force: true)]);
+    expect(results, [true, true]);
+    expect(http.requested.length, 1);
   });
 }

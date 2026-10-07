@@ -47,8 +47,19 @@ class SubscriptionNotifier extends AsyncNotifier<Subscription?> {
     await refresh(force: true);
   }
 
+  Future<bool>? _inFlight;
+
   /// Gibt `true` zurück, wenn Daten erfolgreich übernommen wurden.
-  Future<bool> refresh({bool force = false}) async {
+  /// Gleichzeitige Aufrufe teilen sich denselben Abruf.
+  Future<bool> refresh({bool force = false}) {
+    final running = _inFlight;
+    if (running != null) return running;
+    final f = _refresh(force: force).whenComplete(() => _inFlight = null);
+    _inFlight = f;
+    return f;
+  }
+
+  Future<bool> _refresh({required bool force}) async {
     final sub = state.value ?? await future;
     if (sub == null) return false;
     final now = ref.read(clockProvider).now();
@@ -56,17 +67,22 @@ class SubscriptionNotifier extends AsyncNotifier<Subscription?> {
       return false;
     }
     final result = await fetchAndParse(sub.url);
-    return result.when(
-      ok: (parsed, _) async {
-        await ref.read(appDataProvider.notifier).applyParsedImport(parsed, ImportMode.merge);
-        await _commit(sub.copyWith(lastFetched: now, clearError: true));
-        return true;
-      },
-      err: (message) async {
-        await _commit(sub.copyWith(lastError: message));
+    final current = state.value;
+    if (current == null || current.url != sub.url) return false;
+    switch (result) {
+      case Ok(:final value):
+        try {
+          await ref.read(appDataProvider.notifier).applyParsedImport(value, ImportMode.merge);
+          await _commit(current.copyWith(lastFetched: now, clearError: true));
+          return true;
+        } catch (e) {
+          await _commit(current.copyWith(lastError: 'Übernahme fehlgeschlagen: $e'));
+          return false;
+        }
+      case Err(:final message):
+        await _commit(current.copyWith(lastError: message));
         return false;
-      },
-    );
+    }
   }
 
   Future<void> remove() => _commit(null);
