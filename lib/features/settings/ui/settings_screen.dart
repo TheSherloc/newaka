@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../reminders/ui/reminders_section.dart';
 import '../../waste_types/ui/waste_types_section.dart';
+import 'about_section.dart';
+import 'data_section.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -20,6 +22,9 @@ class SettingsScreen extends ConsumerWidget {
           Divider(),
           WasteTypesSection(),
           Divider(),
+          DataSection(),
+          Divider(),
+          AboutSection(),
         ],
       ),
     );

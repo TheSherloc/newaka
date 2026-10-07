@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../app/infrastructure_providers.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../reminders/domain/notification_gateway.dart';
+import '../../reminders/providers/permission_status_provider.dart';
 
 /// Fragt die Berechtigung an, falls sie noch nicht erteilt ist. Erklärender Dialog davor.
 Future<void> ensureNotificationPermission(BuildContext context, WidgetRef ref) async {
@@ -22,5 +23,9 @@ Future<void> ensureNotificationPermission(BuildContext context, WidgetRef ref) a
       ],
     ),
   );
-  if (proceed == true) await gateway.requestPermission();
+  if (proceed == true) {
+    await gateway.requestPermission();
+    ref.invalidate(permissionStatusProvider);
+    ref.invalidate(exactAlarmsProvider);
+  }
 }

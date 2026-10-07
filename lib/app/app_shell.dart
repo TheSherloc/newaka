@@ -4,7 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../l10n/app_localizations.dart';
 import '../features/calendar/ui/calendar_screen.dart';
 import '../features/import/ui/import_flow.dart';
+import '../features/reminders/providers/permission_status_provider.dart';
 import '../features/settings/ui/settings_screen.dart';
+import '../features/upcoming/providers/app_data_provider.dart';
 import '../features/upcoming/ui/upcoming_screen.dart';
 import 'lifecycle_service.dart';
 
@@ -22,7 +24,19 @@ class _AppShellState extends ConsumerState<AppShell> with WidgetsBindingObserver
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    Future.microtask(() => ref.read(lifecycleServiceProvider).onStart());
+    Future.microtask(() async {
+      await ref.read(appDataProvider.future);
+      if (!mounted) return;
+      if (ref.read(appDataProvider.notifier).wasCorruptOnLoad) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(AppLocalizations.of(context).corruptDataNotice),
+            duration: const Duration(seconds: 8),
+          ),
+        );
+      }
+      await ref.read(lifecycleServiceProvider).onStart();
+    });
   }
 
   @override
@@ -34,6 +48,8 @@ class _AppShellState extends ConsumerState<AppShell> with WidgetsBindingObserver
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
+      ref.invalidate(permissionStatusProvider);
+      ref.invalidate(exactAlarmsProvider);
       ref.read(lifecycleServiceProvider).onResumed();
     }
   }
