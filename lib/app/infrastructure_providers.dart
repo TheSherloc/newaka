@@ -5,7 +5,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../core/clock.dart';
 import '../data/repositories/event_repository.dart';
 import '../data/repositories/settings_repository.dart';
+import '../features/import/data/file_picker_source.dart';
 import '../features/import/data/http_source_impl.dart';
+import '../features/import/domain/file_source.dart';
 import '../features/import/domain/http_source.dart';
 import '../features/import/domain/import_service.dart';
 import '../features/reminders/domain/notification_gateway.dart';
@@ -42,3 +44,5 @@ final reminderCoordinatorProvider = Provider<ReminderCoordinator>((ref) {
     addRefreshHint: isIos,
   );
 });
+
+final fileSourceProvider = Provider<FileSource>((_) => FilePickerSource());

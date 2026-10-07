@@ -86,6 +86,9 @@ class SubscriptionNotifier extends AsyncNotifier<Subscription?> {
   }
 
   Future<void> remove() => _commit(null);
+
+  Future<void> markActivated(String url) =>
+      _commit(Subscription(url: url.trim(), lastFetched: ref.read(clockProvider).now()));
 }
 
 final subscriptionProvider =

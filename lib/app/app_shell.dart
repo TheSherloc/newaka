@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../l10n/app_localizations.dart';
 import '../features/calendar/ui/calendar_screen.dart';
+import '../features/import/ui/import_flow.dart';
 import '../features/upcoming/ui/upcoming_screen.dart';
 import 'lifecycle_service.dart';
 
@@ -42,10 +43,19 @@ class _AppShellState extends ConsumerState<AppShell> with WidgetsBindingObserver
     return Scaffold(
       body: IndexedStack(
         index: _index,
-        children: const [
-          UpcomingScreen(),
-          CalendarScreen(key: Key('tab-calendar')),
-          Center(key: Key('tab-settings'), child: Text('settings')),
+        children: [
+          Builder(
+            key: const Key('tab-home'),
+            builder: (context) {
+              final flow = ImportFlow(ref);
+              return UpcomingScreen(
+                onImportFile: () => flow.importFromFile(context),
+                onEnterUrl: () => flow.importFromUrl(context),
+              );
+            },
+          ),
+          const CalendarScreen(key: Key('tab-calendar')),
+          const Center(key: Key('tab-settings'), child: Text('settings')),
         ],
       ),
       bottomNavigationBar: NavigationBar(
