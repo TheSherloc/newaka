@@ -24,6 +24,20 @@ void main() {
     expect(find.text('Kein Abo eingerichtet'), findsOneWidget);
   });
 
+  testWidgets('sample data opens the import preview and imports on confirm', (tester) async {
+    final repo = InMemoryEventRepository();
+    await pumpApp(tester, const Scaffold(body: DataSection()), overrides: testOverrides(events: repo));
+    await tester.tap(find.text('Beispieldaten laden'));
+    await tester.pumpAndSettle();
+    expect(find.text('Import prüfen'), findsOneWidget);
+    expect(find.text('Biotonne'), findsOneWidget);
+    await tester.tap(find.text('Zusammenführen'));
+    await tester.pumpAndSettle();
+    expect(repo.data.wasteTypes.map((t) => t.displayName), containsAll(['Restmüll', 'Biotonne', 'Papiertonne', 'Gelber Sack']));
+    expect(repo.data.events.length, greaterThan(100));
+    expect(repo.data.events.every((e) => e.sourceId == 'sample'), isTrue);
+  });
+
   testWidgets('delete all asks for confirmation and clears data', (tester) async {
     final repo = InMemoryEventRepository(AppData(
       events: [PickupEvent(date: DateTime(2026, 1, 5), wasteTypeId: 'b', sourceId: 's')],

@@ -543,6 +543,18 @@ abstract class AppLocalizations {
   /// **'Abo entfernen'**
   String get removeSubscription;
 
+  /// No description provided for @loadSampleData.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispieldaten laden'**
+  String get loadSampleData;
+
+  /// No description provided for @loadSampleDataHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Fiktiver Kalender für Musterstadt, zwölf Monate ab heute'**
+  String get loadSampleDataHint;
+
   /// No description provided for @deleteAllData.
   ///
   /// In de, this message translates to:

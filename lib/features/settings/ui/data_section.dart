@@ -30,6 +30,12 @@ class DataSection extends ConsumerWidget {
         ),
         _SubscriptionTile(sub: sub, onEnterUrl: () => flow.importFromUrl(context)),
         ListTile(
+          leading: const LeadingIcon(Icons.auto_awesome_outlined),
+          title: Text(l10n.loadSampleData),
+          subtitle: Text(l10n.loadSampleDataHint),
+          onTap: () => flow.importSample(context),
+        ),
+        ListTile(
           leading: LeadingIcon(Icons.delete_forever_outlined, color: theme.colorScheme.error, background: theme.colorScheme.errorContainer),
           title: Text(l10n.deleteAllData, style: TextStyle(color: theme.colorScheme.error)),
           onTap: () async {

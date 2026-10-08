@@ -271,6 +271,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get removeSubscription => 'Abo entfernen';
 
   @override
+  String get loadSampleData => 'Beispieldaten laden';
+
+  @override
+  String get loadSampleDataHint =>
+      'Fiktiver Kalender für Musterstadt, zwölf Monate ab heute';
+
+  @override
   String get deleteAllData => 'Alle Daten löschen';
 
   @override

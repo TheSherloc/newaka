@@ -84,6 +84,8 @@
   "@subscriptionError": {"placeholders": {"message": {"type": "String"}}},
   "refreshNow": "Jetzt aktualisieren",
   "removeSubscription": "Abo entfernen",
+  "loadSampleData": "Beispieldaten laden",
+  "loadSampleDataHint": "Fiktiver Kalender für Musterstadt, zwölf Monate ab heute",
   "deleteAllData": "Alle Daten löschen",
   "deleteAllConfirmTitle": "Wirklich alles löschen?",
   "deleteAllConfirmBody": "Alle Termine, Abfuhrarten und das URL-Abo werden entfernt. Erinnerungen werden abgesagt.",

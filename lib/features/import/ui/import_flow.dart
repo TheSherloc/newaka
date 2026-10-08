@@ -10,6 +10,7 @@ import '../../waste_types/domain/waste_type_catalog.dart';
 import '../domain/apply_import.dart';
 import '../domain/import_selection.dart';
 import '../domain/parsed_import.dart';
+import '../domain/sample_data.dart';
 import '../providers/subscription_provider.dart';
 import 'import_preview_dialog.dart';
 import 'permission_dialog.dart';
@@ -40,6 +41,9 @@ class ImportFlow {
       onApplied: () => ref.read(subscriptionProvider.notifier).markActivated(url),
     );
   }
+
+  Future<void> importSample(BuildContext context) =>
+      _handleParsed(context, Ok(sampleImport(from: ref.read(clockProvider).now())));
 
   /// Zeigt Vorschau, übernimmt Daten, fragt Berechtigung. Gibt `true` bei Erfolg zurück.
   Future<bool> _handleParsed(
