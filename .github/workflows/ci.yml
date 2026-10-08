@@ -16,6 +16,9 @@ jobs:
       # The Gitea runner image ships without an Android SDK (GitHub's ubuntu-latest has one).
       # Licenses get accepted here; Gradle then downloads the platform/build-tools it needs.
       - uses: android-actions/setup-android@v3
+        with:
+          # The action's default list includes the retired 'tools' package, which makes sdkmanager fail.
+          packages: platform-tools
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
