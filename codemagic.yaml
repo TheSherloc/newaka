@@ -9,8 +9,11 @@ workflows:
       flutter: 3.47.6
       xcode: latest
       ios_signing:
-        distribution_type: app_store
-        bundle_identifier: de.newaka.app
+        # Created once under Codemagic > Teams > Code signing identities (see README).
+        certificates:
+          - newaka_distribution
+        provisioning_profiles:
+          - newaka_app_store
     scripts:
       - name: Pub get and l10n
         script: |
