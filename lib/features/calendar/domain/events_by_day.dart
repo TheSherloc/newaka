@@ -3,7 +3,7 @@ import '../../../data/models/app_data.dart';
 import '../../../data/models/waste_type.dart';
 
 Map<String, List<WasteType>> eventsByDay(AppData data) {
-  final typeById = {for (final t in data.wasteTypes) t.id: t};
+  final typeById = {for (final t in data.activeWasteTypes) t.id: t};
   final out = <String, List<WasteType>>{};
   for (final e in data.events) {
     final type = typeById[e.wasteTypeId];

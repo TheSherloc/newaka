@@ -38,11 +38,11 @@ class ReminderScheduler {
     required DateTime now,
     required int limit,
   }) {
-    final typeById = {for (final t in wasteTypes) t.id: t};
+    final typeById = {for (final t in wasteTypes) if (t.enabled) t.id: t};
     final namesByDate = <String, Set<String>>{};
     for (final e in events) {
       final type = typeById[e.wasteTypeId];
-      if (type == null || !type.notificationsEnabled) continue;
+      if (type == null) continue;
       namesByDate.putIfAbsent(e.date.isoDate, () => <String>{}).add(type.displayName);
     }
 

@@ -114,6 +114,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get importModeReplace => 'Bestehende ersetzen';
 
   @override
+  String get importNow => 'Importieren';
+
+  @override
   String importSuccess(int count) {
     return '$count Termine importiert';
   }
@@ -208,10 +211,33 @@ class AppLocalizationsDe extends AppLocalizations {
       'Exakte Alarme sind nicht erlaubt, Erinnerungen können einige Minuten verzögert sein.';
 
   @override
-  String get notifyForType => 'Erinnern';
+  String get typeActive => 'Aktiv';
+
+  @override
+  String get typeHidden => 'Ausgeblendet';
 
   @override
   String get editWasteType => 'Abfuhrart bearbeiten';
+
+  @override
+  String get deleteWasteType => 'Abfuhrart löschen';
+
+  @override
+  String deleteWasteTypeConfirmTitle(String name) {
+    return '$name löschen?';
+  }
+
+  @override
+  String deleteWasteTypeConfirmBody(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Die Abfuhrart und $count Termine werden entfernt.',
+      one: 'Die Abfuhrart und 1 Termin werden entfernt.',
+      zero: 'Die Abfuhrart hat keine Termine.',
+    );
+    return '$_temp0 Ein Abo-Refresh legt sie nicht wieder an.';
+  }
 
   @override
   String get name => 'Name';
@@ -246,6 +272,20 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get removeSubscription => 'Abo entfernen';
+
+  @override
+  String get loadSampleData => 'Beispieldaten laden';
+
+  @override
+  String get loadSampleDataHint =>
+      'Fiktiver Kalender für Musterstadt, zwölf Monate ab heute';
+
+  @override
+  String get removeSampleData => 'Beispieldaten entfernen';
+
+  @override
+  String get removeSampleDataHint =>
+      'Nimmt den fiktiven Kalender wieder heraus';
 
   @override
   String get deleteAllData => 'Alle Daten löschen';

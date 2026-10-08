@@ -28,6 +28,16 @@ void main() {
     expect(groups[1].types.map((t) => t.id), ['papier', 'bio']);
   });
 
+  test('hides events of disabled waste types', () {
+    const rest = WasteType(id: 'rest', displayName: 'Rest', color: 3, icon: 'trash', enabled: false);
+    final data = AppData(
+      events: [ev(DateTime(2026, 1, 2), 'rest'), ev(DateTime(2026, 1, 3), 'bio')],
+      wasteTypes: const [bio, rest],
+    );
+    final groups = upcomingGroups(data: data, now: DateTime(2026, 1, 1));
+    expect(groups.map((g) => g.date), [DateTime(2026, 1, 3)]);
+  });
+
   test('ignores events with unknown waste type', () {
     final data = AppData(events: [ev(DateTime(2026, 1, 2), 'x')], wasteTypes: const [bio]);
     expect(upcomingGroups(data: data, now: DateTime(2026, 1, 1)), isEmpty);

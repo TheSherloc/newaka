@@ -4,27 +4,30 @@ class WasteType {
     required this.displayName,
     required this.color,
     required this.icon,
-    this.notificationsEnabled = true,
+    this.enabled = true,
   });
 
   final String id;
   final String displayName;
   final int color;
   final String icon;
-  final bool notificationsEnabled;
+
+  /// Ausgeschaltete Arten werden nirgends angezeigt und lösen keine Erinnerungen aus.
+  /// Ihre Termine bleiben gespeichert, Einschalten holt sie zurück.
+  final bool enabled;
 
   WasteType copyWith({
     String? displayName,
     int? color,
     String? icon,
-    bool? notificationsEnabled,
+    bool? enabled,
   }) =>
       WasteType(
         id: id,
         displayName: displayName ?? this.displayName,
         color: color ?? this.color,
         icon: icon ?? this.icon,
-        notificationsEnabled: notificationsEnabled ?? this.notificationsEnabled,
+        enabled: enabled ?? this.enabled,
       );
 
   Map<String, dynamic> toJson() => {
@@ -32,7 +35,7 @@ class WasteType {
         'displayName': displayName,
         'color': color,
         'icon': icon,
-        'notificationsEnabled': notificationsEnabled,
+        'enabled': enabled,
       };
 
   factory WasteType.fromJson(Map<String, dynamic> json) => WasteType(
@@ -40,6 +43,7 @@ class WasteType {
         displayName: json['displayName'] as String,
         color: json['color'] as int,
         icon: json['icon'] as String,
-        notificationsEnabled: json['notificationsEnabled'] as bool? ?? true,
+        // 'notificationsEnabled' ist der Schlüssel aus Version 1.0.
+        enabled: (json['enabled'] ?? json['notificationsEnabled']) as bool? ?? true,
       );
 }

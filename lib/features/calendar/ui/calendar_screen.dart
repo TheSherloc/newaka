@@ -47,7 +47,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
     final scheme = theme.colorScheme;
     final data = ref.watch(appDataProvider).value;
     final byDay = data == null ? const <String, List<WasteType>>{} : eventsByDay(data);
-    final types = data?.wasteTypes ?? const <WasteType>[];
+    final types = data?.activeWasteTypes ?? const <WasteType>[];
     final selectedTypes = byDay[_selected.isoDate] ?? const <WasteType>[];
 
     return Scaffold(

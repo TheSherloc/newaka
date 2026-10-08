@@ -48,10 +48,54 @@ void main() {
     final c = createTestContainer(events: repo, gateway: gateway);
     await c.read(appDataProvider.future);
     await c.read(appDataProvider.notifier).updateWasteType(
-          const WasteType(id: 'bio', displayName: 'Bio', color: 1, icon: 'leaf', notificationsEnabled: false),
+          const WasteType(id: 'bio', displayName: 'Bio', color: 1, icon: 'leaf', enabled: false),
         );
-    expect(repo.data.wasteTypes.single.notificationsEnabled, isFalse);
+    expect(repo.data.wasteTypes.single.enabled, isFalse);
     expect(gateway.scheduled, isEmpty);
+    expect(gateway.cancelAllCount, 1);
+  });
+
+  test('removeWasteType drops the type and its events, remembers the exclusion', () async {
+    final repo = InMemoryEventRepository(AppData(
+      events: [
+        PickupEvent(date: DateTime(2026, 1, 5), wasteTypeId: 'bio', sourceId: 's'),
+        PickupEvent(date: DateTime(2026, 1, 6), wasteTypeId: 'rest', sourceId: 's'),
+      ],
+      wasteTypes: const [
+        WasteType(id: 'bio', displayName: 'Bio', color: 1, icon: 'leaf'),
+        WasteType(id: 'rest', displayName: 'Rest', color: 2, icon: 'trash'),
+      ],
+    ));
+    final settings = InMemorySettingsRepository()..excludedTypeIds = {'glas'};
+    final gateway = FakeNotificationGateway();
+    final c = createTestContainer(events: repo, settings: settings, gateway: gateway);
+    await c.read(appDataProvider.future);
+    await c.read(appDataProvider.notifier).removeWasteType('bio');
+    expect(repo.data.wasteTypes.map((t) => t.id), ['rest']);
+    expect(repo.data.events.map((e) => e.wasteTypeId), ['rest']);
+    expect(settings.excludedTypeIds, {'glas', 'bio'});
+    expect(gateway.cancelAllCount, 1);
+    expect(gateway.scheduled.map((n) => n.body), everyElement('Rest'));
+  });
+
+  test('removeSource drops its events and the types left without events', () async {
+    final repo = InMemoryEventRepository(AppData(
+      events: [
+        PickupEvent(date: DateTime(2026, 1, 5), wasteTypeId: 'bio', sourceId: 'sample'),
+        PickupEvent(date: DateTime(2026, 1, 6), wasteTypeId: 'rest', sourceId: 'sample'),
+        PickupEvent(date: DateTime(2026, 1, 7), wasteTypeId: 'rest', sourceId: 'file:a'),
+      ],
+      wasteTypes: const [
+        WasteType(id: 'bio', displayName: 'Bio', color: 1, icon: 'leaf'),
+        WasteType(id: 'rest', displayName: 'Rest', color: 2, icon: 'trash'),
+      ],
+    ));
+    final gateway = FakeNotificationGateway();
+    final c = createTestContainer(events: repo, gateway: gateway);
+    await c.read(appDataProvider.future);
+    await c.read(appDataProvider.notifier).removeSource('sample');
+    expect(repo.data.events.map((e) => e.key), ['2026-01-07|rest']);
+    expect(repo.data.wasteTypes.map((t) => t.id), ['rest']);
     expect(gateway.cancelAllCount, 1);
   });
 

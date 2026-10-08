@@ -38,6 +38,34 @@ class AppDataNotifier extends AsyncNotifier<AppData> {
     await _commit(current.copyWith(wasteTypes: types));
   }
 
+  /// Entfernt die Art samt Terminen. Die ID wandert in die Import-Abwahl,
+  /// damit ein Abo-Refresh sie nicht stillschweigend wieder anlegt.
+  Future<void> removeWasteType(String id) async {
+    final current = await _loaded();
+    await _commit(current.copyWith(
+      wasteTypes: current.wasteTypes.where((t) => t.id != id).toList(),
+      events: current.events.where((e) => e.wasteTypeId != id).toList(),
+    ));
+    final settings = ref.read(settingsRepositoryProvider);
+    try {
+      await settings.saveExcludedTypeIds({...await settings.loadExcludedTypeIds(), id});
+    } catch (_) {
+      // Komfort: Ohne den Eintrag taucht die Art beim nächsten Refresh wieder auf, mehr nicht.
+    }
+  }
+
+  /// Entfernt alle Termine einer Quelle (z. B. die Beispieldaten) und danach
+  /// die Abfuhrarten, die ohne Termine zurückbleiben.
+  Future<void> removeSource(String sourceId) async {
+    final current = await _loaded();
+    final events = current.events.where((e) => e.sourceId != sourceId).toList();
+    final used = events.map((e) => e.wasteTypeId).toSet();
+    await _commit(AppData(
+      events: events,
+      wasteTypes: current.wasteTypes.where((t) => used.contains(t.id)).toList(),
+    ));
+  }
+
   Future<void> clearAll() async {
     await _loaded();
     await _commit(AppData.empty);

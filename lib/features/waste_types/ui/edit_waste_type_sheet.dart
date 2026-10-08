@@ -6,8 +6,22 @@ import '../../../l10n/app_localizations.dart';
 import '../domain/waste_type_catalog.dart';
 import 'waste_icons.dart';
 
-Future<WasteType?> showEditWasteTypeSheet(BuildContext context, WasteType type) {
-  return showModalBottomSheet<WasteType>(
+/// Ergebnis des Bearbeiten-Sheets: gespeicherte Änderung oder Löschwunsch.
+sealed class EditWasteTypeResult {
+  const EditWasteTypeResult();
+}
+
+class WasteTypeSaved extends EditWasteTypeResult {
+  const WasteTypeSaved(this.type);
+  final WasteType type;
+}
+
+class WasteTypeDeleteRequested extends EditWasteTypeResult {
+  const WasteTypeDeleteRequested();
+}
+
+Future<EditWasteTypeResult?> showEditWasteTypeSheet(BuildContext context, WasteType type) {
+  return showModalBottomSheet<EditWasteTypeResult>(
     context: context,
     isScrollControlled: true,
     showDragHandle: true,
@@ -101,14 +115,21 @@ class _EditSheetState extends State<_EditSheet> {
               final name = _name.text.trim();
               Navigator.pop(
                 context,
-                widget.type.copyWith(
+                WasteTypeSaved(widget.type.copyWith(
                   displayName: name.isEmpty ? widget.type.displayName : name,
                   color: _color,
                   icon: _icon,
-                ),
+                )),
               );
             },
             child: Text(l10n.save),
+          ),
+          const SizedBox(height: 8),
+          TextButton.icon(
+            style: TextButton.styleFrom(foregroundColor: theme.colorScheme.error),
+            icon: const Icon(Icons.delete_outline),
+            label: Text(l10n.deleteWasteType),
+            onPressed: () => Navigator.pop(context, const WasteTypeDeleteRequested()),
           ),
         ],
       ),

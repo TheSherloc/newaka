@@ -44,7 +44,7 @@ void main() {
     expect(find.text('Import prüfen'), findsOneWidget);
     expect(find.textContaining('94 Termine'), findsOneWidget);
     expect(find.text('Biotonne'), findsOneWidget);
-    await tester.tap(find.text('Zusammenführen'));
+    await tester.tap(find.text('Importieren'));
     await tester.pumpAndSettle();
 
     expect(repo.data.events.length, 94);
@@ -74,7 +74,7 @@ void main() {
     expect(find.textContaining('67 von 94 Terminen'), findsOneWidget);
     expect(find.textContaining('4 von 5 Abfuhrarten'), findsOneWidget);
 
-    await tester.tap(find.text('Zusammenführen'));
+    await tester.tap(find.text('Importieren'));
     await tester.pumpAndSettle();
 
     expect(repo.data.events.length, 67);
@@ -100,7 +100,7 @@ void main() {
       await tester.pumpAndSettle();
     }
     expect(find.textContaining('0 von 94 Terminen'), findsOneWidget);
-    final merge = tester.widget<FilledButton>(find.widgetWithText(FilledButton, 'Zusammenführen'));
+    final merge = tester.widget<FilledButton>(find.widgetWithText(FilledButton, 'Importieren'));
     expect(merge.onPressed, isNull);
   });
 
@@ -139,7 +139,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Import prüfen'), findsOneWidget);
-    await tester.tap(find.text('Zusammenführen'));
+    await tester.tap(find.text('Importieren'));
     await tester.pumpAndSettle();
 
     expect(settings.subscription!.url, url);

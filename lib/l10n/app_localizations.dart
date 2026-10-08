@@ -273,6 +273,12 @@ abstract class AppLocalizations {
   /// **'Bestehende ersetzen'**
   String get importModeReplace;
 
+  /// No description provided for @importNow.
+  ///
+  /// In de, this message translates to:
+  /// **'Importieren'**
+  String get importNow;
+
   /// No description provided for @importSuccess.
   ///
   /// In de, this message translates to:
@@ -447,17 +453,41 @@ abstract class AppLocalizations {
   /// **'Exakte Alarme sind nicht erlaubt, Erinnerungen können einige Minuten verzögert sein.'**
   String get exactAlarmsMissing;
 
-  /// No description provided for @notifyForType.
+  /// No description provided for @typeActive.
   ///
   /// In de, this message translates to:
-  /// **'Erinnern'**
-  String get notifyForType;
+  /// **'Aktiv'**
+  String get typeActive;
+
+  /// No description provided for @typeHidden.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausgeblendet'**
+  String get typeHidden;
 
   /// No description provided for @editWasteType.
   ///
   /// In de, this message translates to:
   /// **'Abfuhrart bearbeiten'**
   String get editWasteType;
+
+  /// No description provided for @deleteWasteType.
+  ///
+  /// In de, this message translates to:
+  /// **'Abfuhrart löschen'**
+  String get deleteWasteType;
+
+  /// No description provided for @deleteWasteTypeConfirmTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'{name} löschen?'**
+  String deleteWasteTypeConfirmTitle(String name);
+
+  /// No description provided for @deleteWasteTypeConfirmBody.
+  ///
+  /// In de, this message translates to:
+  /// **'{count, plural, =0{Die Abfuhrart hat keine Termine.} =1{Die Abfuhrart und 1 Termin werden entfernt.} other{Die Abfuhrart und {count} Termine werden entfernt.}} Ein Abo-Refresh legt sie nicht wieder an.'**
+  String deleteWasteTypeConfirmBody(int count);
 
   /// No description provided for @name.
   ///
@@ -518,6 +548,30 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Abo entfernen'**
   String get removeSubscription;
+
+  /// No description provided for @loadSampleData.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispieldaten laden'**
+  String get loadSampleData;
+
+  /// No description provided for @loadSampleDataHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Fiktiver Kalender für Musterstadt, zwölf Monate ab heute'**
+  String get loadSampleDataHint;
+
+  /// No description provided for @removeSampleData.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispieldaten entfernen'**
+  String get removeSampleData;
+
+  /// No description provided for @removeSampleDataHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Nimmt den fiktiven Kalender wieder heraus'**
+  String get removeSampleDataHint;
 
   /// No description provided for @deleteAllData.
   ///

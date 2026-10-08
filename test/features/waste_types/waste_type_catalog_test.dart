@@ -34,7 +34,7 @@ void main() {
     final t = WasteTypeCatalog.createDefault('Abfuhr: Biotonne');
     expect(t.id, 'biotonne');
     expect(t.displayName, 'Biotonne');
-    expect(t.notificationsEnabled, isTrue);
+    expect(t.enabled, isTrue);
   });
 
   test('palette and icon keys are non-empty and icon keys cover defaults', () {

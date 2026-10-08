@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 const bio = WasteType(id: 'bio', displayName: 'Biotonne', color: 1, icon: 'leaf');
 const papier = WasteType(id: 'papier', displayName: 'Altpapier Tonne', color: 2, icon: 'paper');
-const rest = WasteType(id: 'rest', displayName: 'Restmüll', color: 3, icon: 'trash', notificationsEnabled: false);
+const rest = WasteType(id: 'rest', displayName: 'Restmüll', color: 3, icon: 'trash', enabled: false);
 
 PickupEvent ev(DateTime d, String type) => PickupEvent(date: d, wasteTypeId: type, sourceId: 's');
 
