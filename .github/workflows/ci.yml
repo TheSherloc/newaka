@@ -4,6 +4,11 @@ on:
   push:
   pull_request:
 
+# One runner, one job at a time: a newer push on the same branch cancels the older run.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test-and-build:
     runs-on: ubuntu-latest
