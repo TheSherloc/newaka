@@ -11,7 +11,7 @@ workflows:
       ios_signing:
         # Created once under Codemagic > Teams > Code signing identities (see README).
         certificates:
-          - newaka_distribution
+          - newaka
         provisioning_profiles:
           - newaka_app_store
     scripts:
