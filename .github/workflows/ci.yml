@@ -12,6 +12,10 @@ concurrency:
 jobs:
   test-and-build:
     runs-on: ubuntu-latest
+    env:
+      # Job containers on the runner have no IPv6 route; the JVM otherwise tries
+      # the AAAA address first and fails with "Network is unreachable".
+      JAVA_TOOL_OPTIONS: -Djava.net.preferIPv4Stack=true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
