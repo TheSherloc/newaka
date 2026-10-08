@@ -87,14 +87,25 @@ Erste Version.
 
 ## Screenshots
 
-Erzeugt mit `flutter test test/tool/render_store_screenshots_test.dart`, Ablage unter `store/ios/screenshots/`:
+Erzeugt mit `flutter test test/tool/render_store_screenshots_test.dart`, Ablage unter `store/ios/screenshots/`. Die PNGs sind ohne Alphakanal kodiert, Apple lehnt Bilder mit Transparenz ab.
 
-| Ordner | Displayklasse | Pixel | Pflicht |
+| Ordner | Displayklasse in App Store Connect | Pixel | Pflicht |
 |---|---|---|---|
-| `6.9` | iPhone 6,9" (16 Pro Max u. a.) | 1320 × 2868 | ja |
-| `6.7` | iPhone 6,7" (14 Plus, 15 Plus u. a.) | 1290 × 2796 | optional, wird sonst skaliert |
+| `6.3` | iPhone mit Dynamic Island (mittleres Display): 16 Pro, 17 Pro | 1206 × 2622 | **ja** |
+| `6.9` | iPhone mit Dynamic Island (großes Display): 16 Pro Max, 17 Pro Max | 1320 × 2868 | nein, deckt die großen Geräte ab |
 
-Reihenfolge beim Hochladen: `01-start`, `02-termine`, `03-kalender`, `04-erinnerungen`, `05-import`. iPad-Screenshots sind nicht nötig, solange die App unter "Geräte" nur iPhone unterstützt (siehe Xcode: Targeted Device Families = iPhone).
+Reihenfolge beim Hochladen: `01-start`, `02-termine`, `03-kalender`, `04-erinnerungen`, `05-import`. Alle anderen iPhone-Größen skaliert Apple aus diesen beiden. iPad-Screenshots sind nicht nötig, solange die App nur iPhone unterstützt.
+
+## Creative Assets (Kopfzeile und Suchergebnisse)
+
+Seit Oktober 2026 können alle Entwickler eine Grafik für die Kopfzeile der Produktseite und für die Suchergebnisse hinterlegen. Beide liegen unter `store/ios/creative/` und werden vom selben Tool erzeugt.
+
+| Datei | Platzierung | Format | Pixel |
+|---|---|---|---|
+| `header.png` | Kopfzeile der Produktseite | 21:9 | 3840 × 1646 |
+| `search.png` | Suchergebnisse | 3:2 | 3840 × 2560 |
+
+Regeln von Apple, die die Grafiken einhalten: kurzer Text, kein Preis, keine URL, keine Logos anderer Plattformen, keine Auszeichnungen, Fokus in der Bildmitte. Ohne Suchergebnis-Grafik zeigt Apple dort die ersten drei Screenshots.
 
 ## App-Datenschutz (Fragebogen "Datenschutz-Details")
 

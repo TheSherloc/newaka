@@ -1,5 +1,8 @@
-// Rendert die App-Store-Screenshots aus den echten Screens mit Beispieldaten.
+// Rendert die App-Store-Screenshots und die Creative Assets (Kopfzeile der
+// Produktseite, Suchergebnisse) aus den echten Screens mit Beispieldaten.
 // Ausgabe: store/ios/screenshots/<Display>/<nn>-<name>.png
+//          store/ios/creative/header.png, store/ios/creative/search.png
+// Apple lehnt Bilder mit Alphakanal ab, deshalb werden die PNGs ohne Alpha kodiert.
 //
 // Lauf: flutter test test/tool/render_store_screenshots_test.dart
 import 'dart:io';
@@ -22,19 +25,27 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:flutter_test/flutter_test.dart';
+import 'package:image/image.dart' as img;
 
 import '../support/fake_notification_gateway.dart';
 import '../support/in_memory_repositories.dart';
 import '../support/test_container.dart';
 
 /// App-Store-Displayklassen und ihre Pixelmaße (Hochformat).
+/// 6.3 ("Dynamic Island, mittel") ist Pflicht, 6.9 ("Dynamic Island, groß") deckt die großen Geräte ab.
 const displays = {
   '6.9': Size(1320, 2868),
-  '6.7': Size(1290, 2796),
+  '6.3': Size(1206, 2622),
 };
+
+/// Creative Assets: Kopfzeile der Produktseite (21:9) und Suchergebnisse (3:2).
+const creativeHeader = Size(3840, 1646);
+const creativeSearch = Size(3840, 2560);
 
 /// Logische Größe des gerenderten iPhone-Bildschirms im Rahmen.
 const phoneSize = Size(393, 852);
+const framePadding = 12.0;
+const frameWidth = 393 + 2 * framePadding;
 const phoneTopInset = 59.0;
 const phoneBottomInset = 34.0;
 
@@ -118,7 +129,7 @@ class _PhoneFrame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(framePadding),
       decoration: BoxDecoration(
         color: NewakaColors.ink,
         borderRadius: BorderRadius.circular(56),
@@ -225,15 +236,103 @@ List<Override> _overrides({AppData? data}) => testOverrides(
       isIos: true,
     );
 
-Future<void> _capture(WidgetTester tester, GlobalKey key, String display, String name) async {
+Future<void> _capture(WidgetTester tester, GlobalKey key, String path) async {
   await tester.runAsync(() async {
     final boundary = key.currentContext!.findRenderObject()! as RenderRepaintBoundary;
     final image = await boundary.toImage(pixelRatio: tester.view.devicePixelRatio);
-    final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
-    final file = File('store/ios/screenshots/$display/$name.png');
+    final raw = await image.toByteData(format: ui.ImageByteFormat.rawRgba);
+    final rgba = img.Image.fromBytes(
+      width: image.width,
+      height: image.height,
+      bytes: raw!.buffer,
+      numChannels: 4,
+    );
+    final file = File(path);
     await file.parent.create(recursive: true);
-    await file.writeAsBytes(bytes!.buffer.asUint8List(), flush: true);
+    await file.writeAsBytes(img.encodePng(rgba.convert(numChannels: 3)), flush: true);
   });
+}
+
+/// Kopfzeile und Suchergebnis-Grafik: Wortmarke und Slogan links, Startscreen rechts,
+/// der nach unten aus dem Bild läuft. Der Fokus bleibt in der Bildmitte.
+class _CreativeAsset extends StatelessWidget {
+  const _CreativeAsset({required this.app, required this.phoneScale, required this.phoneTop});
+  final Widget app;
+  final double phoneScale;
+  final double phoneTop;
+
+  @override
+  Widget build(BuildContext context) {
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: ColoredBox(
+        color: NewakaColors.accent,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final w = constraints.maxWidth;
+            return Stack(
+              children: [
+                Positioned(
+                  left: w * 0.12,
+                  top: 0,
+                  bottom: 0,
+                  width: w * 0.36,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Newaka',
+                        style: TextStyle(
+                          fontFamily: 'Inter',
+                          fontSize: w * 0.055,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                          letterSpacing: -1.5,
+                          height: 1.05,
+                        ),
+                      ),
+                      SizedBox(height: w * 0.012),
+                      Text(
+                        'Nie wieder die Tonne vergessen',
+                        style: TextStyle(
+                          fontFamily: 'Inter',
+                          fontSize: w * 0.024,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white.withValues(alpha: 0.86),
+                          height: 1.25,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Positioned(
+                  left: w * 0.56,
+                  top: phoneTop,
+                  bottom: 0,
+                  width: frameWidth * phoneScale,
+                  child: ClipRect(
+                    child: OverflowBox(
+                      alignment: Alignment.topCenter,
+                      maxHeight: double.infinity,
+                      child: SizedBox(
+                        width: frameWidth * phoneScale,
+                        child: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          alignment: Alignment.topCenter,
+                          child: _PhoneFrame(child: app),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      ),
+    );
+  }
 }
 
 typedef Scene = Future<void> Function(WidgetTester tester, GlobalKey key, String headline);
@@ -300,9 +399,30 @@ void main() {
         addTearDown(tester.view.reset);
         final key = GlobalKey();
         await scene.value.$2(tester, key, scene.value.$1);
-        await _capture(tester, key, display.key, scene.key);
-        expect(File('store/ios/screenshots/${display.key}/${scene.key}.png').lengthSync(), greaterThan(10000));
+        final path = 'store/ios/screenshots/${display.key}/${scene.key}.png';
+        await _capture(tester, key, path);
+        expect(File(path).lengthSync(), greaterThan(10000));
       });
     }
+  }
+
+  for (final (name, size, scale, top) in [
+    ('header', creativeHeader, 1.45, 60.0),
+    ('search', creativeSearch, 1.6, 90.0),
+  ]) {
+    testWidgets('renders creative asset $name', (tester) async {
+      tester.view.physicalSize = size;
+      tester.view.devicePixelRatio = 2;
+      addTearDown(tester.view.reset);
+      final key = GlobalKey();
+      await tester.pumpWidget(RepaintBoundary(
+        key: key,
+        child: _CreativeAsset(app: _app(_overrides()), phoneScale: scale, phoneTop: top),
+      ));
+      await tester.pumpAndSettle();
+      final path = 'store/ios/creative/$name.png';
+      await _capture(tester, key, path);
+      expect(File(path).lengthSync(), greaterThan(10000));
+    });
   }
 }
