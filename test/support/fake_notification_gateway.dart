@@ -10,9 +10,13 @@ class FakeNotificationGateway implements NotificationGateway {
   NotificationPermission permission = NotificationPermission.unknown;
   bool exactAllowed = true;
   bool grantOnRequest = true;
+  String timezone = 'Europe/Berlin';
 
   @override
   Future<void> initialize() async {}
+
+  @override
+  Future<String> currentTimezone() async => timezone;
 
   @override
   Future<bool> requestPermission() async {

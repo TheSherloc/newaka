@@ -4,6 +4,10 @@ enum NotificationPermission { granted, denied, unknown }
 
 abstract class NotificationGateway {
   Future<void> initialize();
+
+  /// Aktuelle Gerätezeitzone (IANA-Name). Die Implementierung übernimmt sie
+  /// zugleich als Basis für die nächste Planung.
+  Future<String> currentTimezone();
   Future<bool> requestPermission();
   Future<NotificationPermission> permissionStatus();
   Future<bool> canScheduleExact();

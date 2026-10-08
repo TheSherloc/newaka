@@ -14,6 +14,7 @@ class PrefsSettingsRepository implements SettingsRepository {
   static const _rulesKey = 'reminder_rules';
   static const _subscriptionKey = 'subscription';
   static const _lastRunKey = 'last_schedule_run';
+  static const _lastZoneKey = 'last_schedule_timezone';
   static const _excludedTypesKey = 'excluded_type_ids';
 
   @override
@@ -53,6 +54,12 @@ class PrefsSettingsRepository implements SettingsRepository {
   @override
   Future<void> saveLastScheduleRun(DateTime when) =>
       _prefs.setString(_lastRunKey, when.toIso8601String());
+
+  @override
+  Future<String?> loadLastScheduleTimezone() async => _prefs.getString(_lastZoneKey);
+
+  @override
+  Future<void> saveLastScheduleTimezone(String zone) => _prefs.setString(_lastZoneKey, zone);
 
   @override
   Future<Set<String>> loadExcludedTypeIds() async =>

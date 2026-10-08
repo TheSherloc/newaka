@@ -41,5 +41,8 @@ void main() {
     expect(await repo.loadLastScheduleRun(), isNull);
     await repo.saveLastScheduleRun(DateTime(2026, 1, 1, 8));
     expect(await repo.loadLastScheduleRun(), DateTime(2026, 1, 1, 8));
+    expect(await repo.loadLastScheduleTimezone(), isNull);
+    await repo.saveLastScheduleTimezone('Europe/Berlin');
+    expect(await repo.loadLastScheduleTimezone(), 'Europe/Berlin');
   });
 }

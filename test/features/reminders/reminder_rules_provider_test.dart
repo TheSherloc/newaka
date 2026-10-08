@@ -56,7 +56,9 @@ void main() {
   });
 
   test('rescheduleIfStale only runs after 12 hours', () async {
-    final settings = InMemorySettingsRepository()..lastScheduleRun = DateTime(2026, 1, 1, 6);
+    final settings = InMemorySettingsRepository()
+      ..lastScheduleRun = DateTime(2026, 1, 1, 6)
+      ..lastScheduleTimezone = 'Europe/Berlin';
     final gateway = FakeNotificationGateway();
     final c = createTestContainer(settings: settings, gateway: gateway, events: InMemoryEventRepository(seeded));
     await c.read(reminderSyncProvider).rescheduleIfStale(); // now = 12:00, 6h alt

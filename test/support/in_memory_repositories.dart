@@ -29,6 +29,7 @@ class InMemorySettingsRepository implements SettingsRepository {
   List<ReminderRule>? rules;
   Subscription? subscription;
   DateTime? lastScheduleRun;
+  String? lastScheduleTimezone;
   Set<String> excludedTypeIds = {};
 
   @override
@@ -49,4 +50,8 @@ class InMemorySettingsRepository implements SettingsRepository {
   Future<DateTime?> loadLastScheduleRun() async => lastScheduleRun;
   @override
   Future<void> saveLastScheduleRun(DateTime when) async => lastScheduleRun = when;
+  @override
+  Future<String?> loadLastScheduleTimezone() async => lastScheduleTimezone;
+  @override
+  Future<void> saveLastScheduleTimezone(String zone) async => lastScheduleTimezone = zone;
 }

@@ -37,6 +37,7 @@ void main() {
     final http = FakeHttpSource();
     final settings = InMemorySettingsRepository()
       ..lastScheduleRun = DateTime(2026, 1, 1, 10)
+      ..lastScheduleTimezone = 'Europe/Berlin'
       ..subscription = Subscription(url: url, lastFetched: DateTime(2026, 1, 1, 10));
     final c = createTestContainer(
       gateway: gateway, http: http, settings: settings,
@@ -49,5 +50,25 @@ void main() {
     await c.read(lifecycleServiceProvider).onResumed();
     expect(http.requested, isEmpty);
     expect(gateway.cancelAllCount, 0);
+  });
+
+  test('onResumed replans reminders when the device timezone changed', () async {
+    final gateway = FakeNotificationGateway()..timezone = 'Europe/Berlin';
+    final settings = InMemorySettingsRepository()
+      ..lastScheduleRun = DateTime(2026, 1, 1, 10)
+      ..lastScheduleTimezone = 'GMT';
+    final c = createTestContainer(
+      gateway: gateway, settings: settings,
+      events: InMemoryEventRepository(AppData(
+        events: [PickupEvent(date: DateTime(2026, 1, 5), wasteTypeId: 'b', sourceId: 's')],
+        wasteTypes: const [WasteType(id: 'b', displayName: 'B', color: 1, icon: 'leaf')],
+      )),
+      clock: FixedClock(DateTime(2026, 1, 1, 12)),
+    );
+    await c.read(lifecycleServiceProvider).onResumed();
+    expect(gateway.cancelAllCount, 1);
+    expect(gateway.scheduled, isNotEmpty);
+    expect(settings.lastScheduleTimezone, 'Europe/Berlin');
+    expect(settings.lastScheduleRun, DateTime(2026, 1, 1, 12));
   });
 }

@@ -43,12 +43,7 @@ class LocalNotificationsGateway implements NotificationGateway {
   @override
   Future<void> initialize() async {
     tzdata.initializeTimeZones();
-    try {
-      final info = await FlutterTimezone.getLocalTimezone();
-      tz.setLocalLocation(tz.getLocation(info.identifier));
-    } catch (_) {
-      tz.setLocalLocation(tz.getLocation('Europe/Berlin'));
-    }
+    await currentTimezone();
     const settings = InitializationSettings(
       android: AndroidInitializationSettings(androidSmallIcon),
       iOS: DarwinInitializationSettings(
@@ -108,11 +103,27 @@ class LocalNotificationsGateway implements NotificationGateway {
     await _androidPlugin?.requestExactAlarmsPermission();
   }
 
+  /// Liest die Zeitzone bei jedem Aufruf neu, damit auch ein laufender Prozess
+  /// nach einem Zeitzonenwechsel in der richtigen Zone plant.
+  @override
+  Future<String> currentTimezone() async {
+    String zone;
+    try {
+      zone = (await FlutterTimezone.getLocalTimezone()).identifier;
+      tz.setLocalLocation(tz.getLocation(zone));
+    } catch (_) {
+      zone = 'Europe/Berlin';
+      tz.setLocalLocation(tz.getLocation(zone));
+    }
+    return zone;
+  }
+
   @override
   Future<void> cancelAll() => _plugin.cancelAll();
 
   @override
   Future<void> schedule(List<PlannedNotification> items) async {
+    await currentTimezone();
     final exact = await canScheduleExact();
     final mode = exact
         ? AndroidScheduleMode.exactAllowWhileIdle
