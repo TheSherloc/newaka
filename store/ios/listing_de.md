@@ -57,10 +57,9 @@ abfallkalender,müllkalender,abfuhrkalender,müll,erinnerung,biotonne,restmüll,
 **Support-URL**
 
 ```
-http://192.168.1.79:30008/Sherloc/Newaka/issues
+https://github.com/TheSherloc/newaka/issues
 ```
 
-Hinweis: Die Adresse ist nur im Heimnetz erreichbar. Für die Einreichung eine öffentliche URL nehmen, z. B. das GitHub-Mirror-Repo `https://github.com/TheSherloc/newaka/issues` oder eine Seite unter GitHub Pages.
 
 **Marketing-URL (optional)**
 
