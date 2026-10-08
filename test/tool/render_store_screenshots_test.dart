@@ -52,6 +52,18 @@ const phoneBottomInset = 34.0;
 /// Fester Zeitpunkt: Donnerstag, 8. Oktober 2026, laut Beispieldaten ein Biotonnen-Tag.
 final now = DateTime(2026, 10, 8, 9, 41);
 
+/// Die Material-Icons liegen im Flutter-SDK-Cache. Auf frischen CI-Runnern fehlt
+/// die Datei; dann werden die Tool-Tests übersprungen statt Bilder ohne Icons zu erzeugen.
+final iconFontPath = () {
+  final flutterRoot = Platform.environment['FLUTTER_ROOT'] ??
+      File(Platform.resolvedExecutable).parent.parent.parent.parent.path;
+  return '$flutterRoot/bin/cache/artifacts/material_fonts/materialicons-regular.otf';
+}();
+
+final String? skipReason = File(iconFontPath).existsSync()
+    ? null
+    : 'Material-Icon-Font fehlt unter $iconFontPath (lokal nach einem flutter build vorhanden).';
+
 Future<void> _loadFonts() async {
   final inter = FontLoader('Inter');
   for (final name in ['Regular', 'Medium', 'SemiBold', 'Bold']) {
@@ -59,10 +71,7 @@ Future<void> _loadFonts() async {
   }
   await inter.load();
 
-  final flutterRoot = Platform.environment['FLUTTER_ROOT'] ??
-      File(Platform.resolvedExecutable).parent.parent.parent.parent.path;
-  final icons = FontLoader('MaterialIcons')
-    ..addFont(_bytes('$flutterRoot/bin/cache/artifacts/material_fonts/materialicons-regular.otf'));
+  final icons = FontLoader('MaterialIcons')..addFont(_bytes(iconFontPath));
   await icons.load();
 }
 
@@ -388,12 +397,12 @@ final scenes = <String, (String, Scene)>{
 
 void main() {
   setUpAll(() async {
-    await _loadFonts();
+    if (skipReason == null) await _loadFonts();
   });
 
   for (final display in displays.entries) {
     for (final scene in scenes.entries) {
-      testWidgets('renders ${scene.key} for ${display.key} inch', (tester) async {
+      testWidgets('renders ${scene.key} for ${display.key} inch', skip: skipReason, (tester) async {
         tester.view.physicalSize = display.value;
         tester.view.devicePixelRatio = 3;
         addTearDown(tester.view.reset);
@@ -410,7 +419,7 @@ void main() {
     ('header', creativeHeader, 1.45, 60.0),
     ('search', creativeSearch, 1.6, 90.0),
   ]) {
-    testWidgets('renders creative asset $name', (tester) async {
+    testWidgets('renders creative asset $name', skip: skipReason, (tester) async {
       tester.view.physicalSize = size;
       tester.view.devicePixelRatio = 2;
       addTearDown(tester.view.reset);
