@@ -13,11 +13,16 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+      # The Gitea runner image ships without an Android SDK (GitHub's ubuntu-latest has one).
+      # Licenses get accepted here; Gradle then downloads the platform/build-tools it needs.
+      - uses: android-actions/setup-android@v3
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
           flutter-version: 3.47.6
-          cache: true
+          # The act_runner cache server is not reachable from job containers; every
+          # cache call would time out and add minutes to the run.
+          cache: false
       - run: flutter pub get
       - run: flutter gen-l10n
       - run: flutter analyze
