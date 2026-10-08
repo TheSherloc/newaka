@@ -59,7 +59,8 @@ class ImportFlow {
         await _showError(context, message);
         return false;
       case Ok(:final value):
-        final current = ref.read(appDataProvider).value?.wasteTypes ?? const <WasteType>[];
+        final data = ref.read(appDataProvider).value;
+        final current = data?.wasteTypes ?? const <WasteType>[];
         final byId = {for (final t in current) t.id: t};
         final seenIds = <String>{};
         final resolved = [
@@ -75,6 +76,7 @@ class ImportFlow {
           value,
           countByType(value, resolved),
           initiallyExcluded: stored,
+          hasExistingData: data?.events.isNotEmpty ?? false,
         );
         if (choice == null) return false;
         final ImportOutcome outcome;
@@ -86,6 +88,14 @@ class ImportFlow {
         } catch (e) {
           if (context.mounted) await _showError(context, 'Speichern fehlgeschlagen: $e');
           return false;
+        }
+        // Die Beispieldaten teilen sich IDs mit echten Arten; ihre Auswahl darf die
+        // gemerkte Entscheidung für echte Importe nicht überschreiben.
+        if (value.sourceId == SampleData.sourceId) {
+          if (!context.mounted) return true;
+          await ensureNotificationPermission(context, ref);
+          messenger.showSnackBar(SnackBar(content: Text(l10n.importSuccess(outcome.imported))));
+          return true;
         }
         try {
           await settings.saveExcludedTypeIds(mergeExclusions(

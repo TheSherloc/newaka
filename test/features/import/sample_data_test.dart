@@ -26,6 +26,16 @@ void main() {
     expect(parsed.pickups.every((p) => p.date.hour == 0 && p.date.minute == 0), isTrue);
   });
 
+  test('keeps plain days and weekdays across the autumn DST change', () {
+    // Start shortly before 25 Oct 2026 so the week offsets cross the clock change.
+    final dst = sampleImport(from: DateTime(2026, 10, 22));
+    expect(dst.pickups.every((p) => p.date.hour == 0 && p.date.minute == 0), isTrue);
+    for (final (name, _, weekday, _) in SampleData.types) {
+      expect(dst.pickups.where((p) => p.rawName == name).map((p) => p.date.weekday).toSet(), {weekday},
+          reason: name);
+    }
+  });
+
   test('is deterministic for the same start day', () {
     final again = sampleImport(from: DateTime(2026, 10, 8, 23, 59));
     expect(again.pickups.map((p) => '${p.date}|${p.rawName}'), parsed.pickups.map((p) => '${p.date}|${p.rawName}'));

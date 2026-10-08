@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 
 import '../../../data/models/subscription.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../import/domain/sample_data.dart';
 import '../../import/providers/subscription_provider.dart';
 import '../../import/ui/import_flow.dart';
 import '../../upcoming/providers/app_data_provider.dart';
@@ -18,6 +19,9 @@ class DataSection extends ConsumerWidget {
     final theme = Theme.of(context);
     final sub = ref.watch(subscriptionProvider).value;
     final flow = ImportFlow(ref);
+    final hasSample = ref.watch(appDataProvider.select(
+      (s) => s.value?.events.any((e) => e.sourceId == SampleData.sourceId) ?? false,
+    ));
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,12 +33,20 @@ class DataSection extends ConsumerWidget {
           onTap: () => flow.importFromFile(context),
         ),
         _SubscriptionTile(sub: sub, onEnterUrl: () => flow.importFromUrl(context)),
-        ListTile(
-          leading: const LeadingIcon(Icons.auto_awesome_outlined),
-          title: Text(l10n.loadSampleData),
-          subtitle: Text(l10n.loadSampleDataHint),
-          onTap: () => flow.importSample(context),
-        ),
+        if (hasSample)
+          ListTile(
+            leading: const LeadingIcon(Icons.auto_awesome_outlined),
+            title: Text(l10n.removeSampleData),
+            subtitle: Text(l10n.removeSampleDataHint),
+            onTap: () => ref.read(appDataProvider.notifier).removeSource(SampleData.sourceId),
+          )
+        else
+          ListTile(
+            leading: const LeadingIcon(Icons.auto_awesome_outlined),
+            title: Text(l10n.loadSampleData),
+            subtitle: Text(l10n.loadSampleDataHint),
+            onTap: () => flow.importSample(context),
+          ),
         ListTile(
           leading: LeadingIcon(Icons.delete_forever_outlined, color: theme.colorScheme.error, background: theme.colorScheme.errorContainer),
           title: Text(l10n.deleteAllData, style: TextStyle(color: theme.colorScheme.error)),

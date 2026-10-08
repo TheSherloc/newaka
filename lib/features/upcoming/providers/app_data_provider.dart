@@ -54,6 +54,18 @@ class AppDataNotifier extends AsyncNotifier<AppData> {
     }
   }
 
+  /// Entfernt alle Termine einer Quelle (z. B. die Beispieldaten) und danach
+  /// die Abfuhrarten, die ohne Termine zurückbleiben.
+  Future<void> removeSource(String sourceId) async {
+    final current = await _loaded();
+    final events = current.events.where((e) => e.sourceId != sourceId).toList();
+    final used = events.map((e) => e.wasteTypeId).toSet();
+    await _commit(AppData(
+      events: events,
+      wasteTypes: current.wasteTypes.where((t) => used.contains(t.id)).toList(),
+    ));
+  }
+
   Future<void> clearAll() async {
     await _loaded();
     await _commit(AppData.empty);

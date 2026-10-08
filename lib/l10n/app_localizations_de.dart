@@ -114,6 +114,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get importModeReplace => 'Bestehende ersetzen';
 
   @override
+  String get importNow => 'Importieren';
+
+  @override
   String importSuccess(int count) {
     return '$count Termine importiert';
   }
@@ -276,6 +279,13 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get loadSampleDataHint =>
       'Fiktiver Kalender für Musterstadt, zwölf Monate ab heute';
+
+  @override
+  String get removeSampleData => 'Beispieldaten entfernen';
+
+  @override
+  String get removeSampleDataHint =>
+      'Nimmt den fiktiven Kalender wieder heraus';
 
   @override
   String get deleteAllData => 'Alle Daten löschen';

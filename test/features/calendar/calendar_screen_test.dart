@@ -33,6 +33,22 @@ void main() {
     expect(find.text('Biotonne'), findsWidgets);
   });
 
+  testWidgets('legend and markers leave out disabled types', (tester) async {
+    const rest = WasteType(id: 'rest', displayName: 'Restmüll', color: 0xFF455A64, icon: 'trash', enabled: false);
+    final repo = InMemoryEventRepository(AppData(
+      events: [
+        PickupEvent(date: DateTime(2026, 1, 15), wasteTypeId: 'bio', sourceId: 's'),
+        PickupEvent(date: DateTime(2026, 1, 16), wasteTypeId: 'rest', sourceId: 's'),
+      ],
+      wasteTypes: const [bio, rest],
+    ));
+    await pumpApp(tester, const CalendarScreen(),
+        overrides: testOverrides(events: repo, clock: FixedClock(DateTime(2026, 1, 10))));
+    expect(find.text('Biotonne'), findsOneWidget);
+    expect(find.text('Restmüll'), findsNothing);
+    expect(find.byKey(const Key('marker-2026-01-16-rest')), findsNothing);
+  });
+
   testWidgets('Heute button exists', (tester) async {
     await pumpApp(tester, const CalendarScreen(), overrides: testOverrides());
     expect(find.byTooltip('Heute'), findsOneWidget);

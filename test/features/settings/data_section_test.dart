@@ -31,11 +31,67 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Import prüfen'), findsOneWidget);
     expect(find.text('Biotonne'), findsOneWidget);
-    await tester.tap(find.text('Zusammenführen'));
+    await tester.tap(find.text('Importieren'));
     await tester.pumpAndSettle();
     expect(repo.data.wasteTypes.map((t) => t.displayName), containsAll(['Restmüll', 'Biotonne', 'Papiertonne', 'Gelber Sack']));
     expect(repo.data.events.length, greaterThan(100));
     expect(repo.data.events.every((e) => e.sourceId == 'sample'), isTrue);
+  });
+
+  testWidgets('preview offers a single Importieren button while no data exists', (tester) async {
+    final repo = InMemoryEventRepository();
+    await pumpApp(tester, const Scaffold(body: DataSection()), overrides: testOverrides(events: repo));
+    await tester.tap(find.text('Beispieldaten laden'));
+    await tester.pumpAndSettle();
+    expect(find.text('Zusammenführen'), findsNothing);
+    expect(find.text('Bestehende ersetzen'), findsNothing);
+    await tester.tap(find.text('Importieren'));
+    await tester.pumpAndSettle();
+    expect(repo.data.events, isNotEmpty);
+  });
+
+  testWidgets('preview offers merge and replace once data exists', (tester) async {
+    final repo = InMemoryEventRepository(AppData(
+      events: [PickupEvent(date: DateTime(2026, 1, 6), wasteTypeId: 'glas', sourceId: 'file:a')],
+      wasteTypes: const [WasteType(id: 'glas', displayName: 'Glas', color: 2, icon: 'bottle')],
+    ));
+    await pumpApp(tester, const Scaffold(body: DataSection()), overrides: testOverrides(events: repo));
+    await tester.tap(find.text('Beispieldaten laden'));
+    await tester.pumpAndSettle();
+    expect(find.text('Zusammenführen'), findsOneWidget);
+    expect(find.text('Bestehende ersetzen'), findsOneWidget);
+    expect(find.text('Importieren'), findsNothing);
+  });
+
+  testWidgets('sample preview choices do not touch the stored import exclusion', (tester) async {
+    final settings = InMemorySettingsRepository()..excludedTypeIds = {'glas'};
+    await pumpApp(tester, const Scaffold(body: DataSection()), overrides: testOverrides(settings: settings));
+    await tester.tap(find.text('Beispieldaten laden'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byType(Checkbox).first);
+    await tester.tap(find.text('Importieren'));
+    await tester.pumpAndSettle();
+    expect(settings.excludedTypeIds, {'glas'});
+  });
+
+  testWidgets('with sample data loaded the tile removes it again', (tester) async {
+    final repo = InMemoryEventRepository(AppData(
+      events: [
+        PickupEvent(date: DateTime(2026, 1, 5), wasteTypeId: 'biotonne', sourceId: 'sample'),
+        PickupEvent(date: DateTime(2026, 1, 6), wasteTypeId: 'glas', sourceId: 'file:a'),
+      ],
+      wasteTypes: const [
+        WasteType(id: 'biotonne', displayName: 'Biotonne', color: 1, icon: 'leaf'),
+        WasteType(id: 'glas', displayName: 'Glas', color: 2, icon: 'bottle'),
+      ],
+    ));
+    await pumpApp(tester, const Scaffold(body: DataSection()), overrides: testOverrides(events: repo));
+    expect(find.text('Beispieldaten laden'), findsNothing);
+    await tester.tap(find.text('Beispieldaten entfernen'));
+    await tester.pumpAndSettle();
+    expect(repo.data.events.map((e) => e.wasteTypeId), ['glas']);
+    expect(repo.data.wasteTypes.map((t) => t.id), ['glas']);
+    expect(find.text('Beispieldaten laden'), findsOneWidget);
   });
 
   testWidgets('delete all asks for confirmation and clears data', (tester) async {

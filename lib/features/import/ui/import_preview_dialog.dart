@@ -19,6 +19,7 @@ Future<ImportChoice?> showImportPreviewDialog(
   ParsedImport parsed,
   List<TypeCount> types, {
   Set<String> initiallyExcluded = const {},
+  bool hasExistingData = true,
 }) {
   return showDialog<ImportChoice>(
     context: context,
@@ -26,6 +27,7 @@ Future<ImportChoice?> showImportPreviewDialog(
       parsed: parsed,
       types: types,
       initiallyExcluded: initiallyExcluded,
+      hasExistingData: hasExistingData,
     ),
   );
 }
@@ -35,11 +37,16 @@ class _ImportPreviewDialog extends StatefulWidget {
     required this.parsed,
     required this.types,
     required this.initiallyExcluded,
+    required this.hasExistingData,
   });
 
   final ParsedImport parsed;
   final List<TypeCount> types;
   final Set<String> initiallyExcluded;
+
+  /// Ohne vorhandene Daten gibt es nichts zu ersetzen oder zusammenzuführen,
+  /// also nur einen Button "Importieren".
+  final bool hasExistingData;
 
   @override
   State<_ImportPreviewDialog> createState() => _ImportPreviewDialogState();
@@ -117,13 +124,14 @@ class _ImportPreviewDialogState extends State<_ImportPreviewDialog> {
       ),
       actions: [
         TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
-        TextButton(
-          onPressed: canImport ? () => _pop(ImportMode.replace) : null,
-          child: Text(l10n.importModeReplace),
-        ),
+        if (widget.hasExistingData)
+          TextButton(
+            onPressed: canImport ? () => _pop(ImportMode.replace) : null,
+            child: Text(l10n.importModeReplace),
+          ),
         FilledButton(
           onPressed: canImport ? () => _pop(ImportMode.merge) : null,
-          child: Text(l10n.importModeMerge),
+          child: Text(widget.hasExistingData ? l10n.importModeMerge : l10n.importNow),
         ),
       ],
     );

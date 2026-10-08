@@ -23,7 +23,9 @@ ParsedImport sampleImport({required DateTime from}) {
   final end = DateTime(start.year, start.month + SampleData.months, start.day);
   final pickups = <RawPickup>[];
   for (final (name, interval, weekday, offsetWeeks) in SampleData.types) {
-    var date = start.add(Duration(days: (weekday - start.weekday + 7) % 7 + offsetWeeks * 7));
+    // Tage über den Konstruktor addieren: Duration-Arithmetik verschiebt über die
+    // Zeitumstellung hinweg um eine Stunde und damit auf den falschen Tag.
+    var date = DateTime(start.year, start.month, start.day + (weekday - start.weekday + 7) % 7 + offsetWeeks * 7);
     while (!date.isAfter(end)) {
       pickups.add(RawPickup(date: date, rawName: name));
       date = DateTime(date.year, date.month, date.day + interval);

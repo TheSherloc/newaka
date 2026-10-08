@@ -273,6 +273,12 @@ abstract class AppLocalizations {
   /// **'Bestehende ersetzen'**
   String get importModeReplace;
 
+  /// No description provided for @importNow.
+  ///
+  /// In de, this message translates to:
+  /// **'Importieren'**
+  String get importNow;
+
   /// No description provided for @importSuccess.
   ///
   /// In de, this message translates to:
@@ -554,6 +560,18 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Fiktiver Kalender für Musterstadt, zwölf Monate ab heute'**
   String get loadSampleDataHint;
+
+  /// No description provided for @removeSampleData.
+  ///
+  /// In de, this message translates to:
+  /// **'Beispieldaten entfernen'**
+  String get removeSampleData;
+
+  /// No description provided for @removeSampleDataHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Nimmt den fiktiven Kalender wieder heraus'**
+  String get removeSampleDataHint;
 
   /// No description provided for @deleteAllData.
   ///
