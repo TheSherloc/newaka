@@ -26,7 +26,9 @@ workflows:
       - name: Set up code signing
         script: xcode-project use-profiles
       - name: Build ipa
-        script: flutter build ipa --release --export-options-plist=/Users/builder/export_options.plist
+        # App Store Connect verlangt pro Upload eine höhere Build-Nummer; BUILD_NUMBER
+        # zählt Codemagic für diese App automatisch hoch.
+        script: flutter build ipa --release --build-number=$BUILD_NUMBER --export-options-plist=/Users/builder/export_options.plist
     artifacts:
       - build/ios/ipa/*.ipa
     publishing:
@@ -57,6 +59,6 @@ workflows:
           flutter pub get
           flutter gen-l10n
           flutter test
-          flutter build appbundle --release
+          flutter build appbundle --release --build-number=$BUILD_NUMBER
     artifacts:
       - build/app/outputs/bundle/release/*.aab
