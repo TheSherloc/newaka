@@ -103,19 +103,22 @@ class LocalNotificationsGateway implements NotificationGateway {
     await _androidPlugin?.requestExactAlarmsPermission();
   }
 
-  /// Liest die Zeitzone bei jedem Aufruf neu, damit auch ein laufender Prozess
-  /// nach einem Zeitzonenwechsel in der richtigen Zone plant.
+  /// Kennung der aktuellen Zone. Der IANA-Name aus dem Plugin kann im laufenden
+  /// Prozess veralten (Java cached die Default-Zone), der Offset aus Darts
+  /// `DateTime.now()` kommt dagegen frisch von der C-Bibliothek. Beides zusammen
+  /// erkennt jeden Wechsel, der die Wanduhrzeit verschiebt.
   @override
   Future<String> currentTimezone() async {
-    String zone;
+    String name;
     try {
-      zone = (await FlutterTimezone.getLocalTimezone()).identifier;
-      tz.setLocalLocation(tz.getLocation(zone));
+      name = (await FlutterTimezone.getLocalTimezone()).identifier;
+      tz.setLocalLocation(tz.getLocation(name));
     } catch (_) {
-      zone = 'Europe/Berlin';
-      tz.setLocalLocation(tz.getLocation(zone));
+      name = 'Europe/Berlin';
+      tz.setLocalLocation(tz.getLocation(name));
     }
-    return zone;
+    final now = DateTime.now();
+    return '$name@${now.timeZoneOffset.inMinutes}';
   }
 
   @override
@@ -134,7 +137,10 @@ class LocalNotificationsGateway implements NotificationGateway {
       try {
         await _plugin.zonedSchedule(
           id: n.id,
-          scheduledDate: tz.TZDateTime.from(n.at, tz.local),
+          // n.at ist eine lokale Wanduhrzeit, frisch beim Planen erzeugt. Der
+          // Zeitpunkt wird in UTC übergeben, damit kein möglicherweise veralteter
+          // Zonenname aus dem Plugin mehr in die Alarmzeit eingeht.
+          scheduledDate: tz.TZDateTime.from(n.at, tz.UTC),
           notificationDetails: _details,
           androidScheduleMode: mode,
           title: n.title,
