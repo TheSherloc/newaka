@@ -465,6 +465,24 @@ abstract class AppLocalizations {
   /// **'Abfuhrart bearbeiten'**
   String get editWasteType;
 
+  /// No description provided for @deleteWasteType.
+  ///
+  /// In de, this message translates to:
+  /// **'Abfuhrart löschen'**
+  String get deleteWasteType;
+
+  /// No description provided for @deleteWasteTypeConfirmTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'{name} löschen?'**
+  String deleteWasteTypeConfirmTitle(String name);
+
+  /// No description provided for @deleteWasteTypeConfirmBody.
+  ///
+  /// In de, this message translates to:
+  /// **'{count, plural, =0{Die Abfuhrart hat keine Termine.} =1{Die Abfuhrart und 1 Termin werden entfernt.} other{Die Abfuhrart und {count} Termine werden entfernt.}} Ein Abo-Refresh legt sie nicht wieder an.'**
+  String deleteWasteTypeConfirmBody(int count);
+
   /// No description provided for @name.
   ///
   /// In de, this message translates to:

@@ -217,6 +217,26 @@ class AppLocalizationsDe extends AppLocalizations {
   String get editWasteType => 'Abfuhrart bearbeiten';
 
   @override
+  String get deleteWasteType => 'Abfuhrart löschen';
+
+  @override
+  String deleteWasteTypeConfirmTitle(String name) {
+    return '$name löschen?';
+  }
+
+  @override
+  String deleteWasteTypeConfirmBody(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Die Abfuhrart und $count Termine werden entfernt.',
+      one: 'Die Abfuhrart und 1 Termin werden entfernt.',
+      zero: 'Die Abfuhrart hat keine Termine.',
+    );
+    return '$_temp0 Ein Abo-Refresh legt sie nicht wieder an.';
+  }
+
+  @override
   String get name => 'Name';
 
   @override

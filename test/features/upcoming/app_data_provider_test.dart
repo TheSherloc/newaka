@@ -55,6 +55,29 @@ void main() {
     expect(gateway.cancelAllCount, 1);
   });
 
+  test('removeWasteType drops the type and its events, remembers the exclusion', () async {
+    final repo = InMemoryEventRepository(AppData(
+      events: [
+        PickupEvent(date: DateTime(2026, 1, 5), wasteTypeId: 'bio', sourceId: 's'),
+        PickupEvent(date: DateTime(2026, 1, 6), wasteTypeId: 'rest', sourceId: 's'),
+      ],
+      wasteTypes: const [
+        WasteType(id: 'bio', displayName: 'Bio', color: 1, icon: 'leaf'),
+        WasteType(id: 'rest', displayName: 'Rest', color: 2, icon: 'trash'),
+      ],
+    ));
+    final settings = InMemorySettingsRepository()..excludedTypeIds = {'glas'};
+    final gateway = FakeNotificationGateway();
+    final c = createTestContainer(events: repo, settings: settings, gateway: gateway);
+    await c.read(appDataProvider.future);
+    await c.read(appDataProvider.notifier).removeWasteType('bio');
+    expect(repo.data.wasteTypes.map((t) => t.id), ['rest']);
+    expect(repo.data.events.map((e) => e.wasteTypeId), ['rest']);
+    expect(settings.excludedTypeIds, {'glas', 'bio'});
+    expect(gateway.cancelAllCount, 1);
+    expect(gateway.scheduled.map((n) => n.body), everyElement('Rest'));
+  });
+
   test('clearAll empties data and cancels notifications', () async {
     final repo = InMemoryEventRepository(AppData(
       events: [PickupEvent(date: DateTime(2026, 1, 5), wasteTypeId: 'bio', sourceId: 's')],

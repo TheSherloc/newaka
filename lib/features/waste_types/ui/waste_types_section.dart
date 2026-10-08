@@ -15,8 +15,30 @@ class WasteTypesSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
-    final types = ref.watch(appDataProvider).value?.wasteTypes ?? const <WasteType>[];
+    final data = ref.watch(appDataProvider).value;
+    final types = data?.wasteTypes ?? const <WasteType>[];
     final notifier = ref.read(appDataProvider.notifier);
+
+    Future<void> confirmDelete(WasteType t) async {
+      final count = data?.events.where((e) => e.wasteTypeId == t.id).length ?? 0;
+      final theme = Theme.of(context);
+      final confirmed = await showDialog<bool>(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(l10n.deleteWasteTypeConfirmTitle(t.displayName)),
+          content: Text(l10n.deleteWasteTypeConfirmBody(count)),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(context, false), child: Text(l10n.cancel)),
+            FilledButton(
+              style: FilledButton.styleFrom(backgroundColor: theme.colorScheme.error),
+              onPressed: () => Navigator.pop(context, true),
+              child: Text(l10n.delete),
+            ),
+          ],
+        ),
+      );
+      if (confirmed == true) await notifier.removeWasteType(t.id);
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,8 +63,15 @@ class WasteTypesSection extends ConsumerWidget {
               onChanged: (v) => notifier.updateWasteType(t.copyWith(enabled: v)),
             ),
             onTap: () async {
-              final edited = await showEditWasteTypeSheet(context, t);
-              if (edited != null) await notifier.updateWasteType(edited);
+              final result = await showEditWasteTypeSheet(context, t);
+              switch (result) {
+                case WasteTypeSaved(:final type):
+                  await notifier.updateWasteType(type);
+                case WasteTypeDeleteRequested():
+                  if (context.mounted) await confirmDelete(t);
+                case null:
+                  break;
+              }
             },
           ),
       ],
