@@ -402,7 +402,7 @@ void main() {
 
   for (final display in displays.entries) {
     for (final scene in scenes.entries) {
-      testWidgets('renders ${scene.key} for ${display.key} inch', skip: skipReason, (tester) async {
+      testWidgets('renders ${scene.key} for ${display.key} inch', skip: skipReason != null, (tester) async {
         tester.view.physicalSize = display.value;
         tester.view.devicePixelRatio = 3;
         addTearDown(tester.view.reset);
@@ -419,7 +419,7 @@ void main() {
     ('header', creativeHeader, 1.45, 60.0),
     ('search', creativeSearch, 1.6, 90.0),
   ]) {
-    testWidgets('renders creative asset $name', skip: skipReason, (tester) async {
+    testWidgets('renders creative asset $name', skip: skipReason != null, (tester) async {
       tester.view.physicalSize = size;
       tester.view.devicePixelRatio = 2;
       addTearDown(tester.view.reset);
