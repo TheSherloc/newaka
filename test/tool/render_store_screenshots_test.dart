@@ -294,7 +294,7 @@ class _CreativeAsset extends StatelessWidget {
                       ),
                       SizedBox(height: w * 0.012),
                       Text(
-                        'Nie wieder die Tonne vergessen',
+                        'Nur eine weitere Abfallkalender-App',
                         style: TextStyle(
                           fontFamily: 'Inter',
                           fontSize: w * 0.024,
