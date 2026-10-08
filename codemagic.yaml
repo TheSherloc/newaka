@@ -2,11 +2,12 @@ workflows:
   ios-testflight:
     name: iOS TestFlight
     instance_type: mac_mini_m2
+    integrations:
+      # Name of the App Store Connect API key under Codemagic > Teams > Integrations > Developer Portal.
+      app_store_connect: newaka
     environment:
       flutter: 3.47.6
       xcode: latest
-      groups:
-        - app_store_credentials # APP_STORE_CONNECT_ISSUER_ID, _KEY_IDENTIFIER, _PRIVATE_KEY
       ios_signing:
         distribution_type: app_store
         bundle_identifier: de.newaka.app
