@@ -1,0 +1,49 @@
+# Gitea Actions (act_runner "truenas-docker"). Gitea prefers .gitea/workflows over
+# .github/workflows, so the GitHub mirror runs its own copy with the v4 artifact action.
+name: CI
+
+on:
+  push:
+  pull_request:
+
+# One runner, one job at a time: a newer push on the same branch cancels the older run.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    env:
+      # Job containers on the runner have no IPv6 route; the JVM otherwise tries
+      # the AAAA address first and fails with "Network is unreachable".
+      JAVA_TOOL_OPTIONS: -Djava.net.preferIPv4Stack=true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      # The Gitea runner image ships without an Android SDK (GitHub's ubuntu-latest has one).
+      # Licenses get accepted here; Gradle then downloads the platform/build-tools it needs.
+      - uses: android-actions/setup-android@v3
+        with:
+          # The action's default list includes the retired 'tools' package, which makes sdkmanager fail.
+          packages: platform-tools
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.6
+          # The act_runner cache server is not reachable from job containers; every
+          # cache call would time out and add minutes to the run.
+          cache: false
+      - run: flutter pub get
+      - run: flutter gen-l10n
+      - run: flutter analyze
+      - run: flutter test
+      - run: flutter build apk --release
+      # Gitea Actions does not support the v4 artifact protocol yet.
+      - uses: actions/upload-artifact@v3
+        with:
+          name: app-release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
