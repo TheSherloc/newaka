@@ -37,6 +37,34 @@ void main() {
     expect(gateway.shown.single.$1, 'Test');
   });
 
+  testWidgets('time picker keyboard entry accepts 24-hour values on 12-hour devices', (tester) async {
+    final settings = InMemorySettingsRepository();
+    await pumpApp(
+      tester,
+      Builder(
+        builder: (context) => MediaQuery(
+          data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: false),
+          child: const Scaffold(body: RemindersSection()),
+        ),
+      ),
+      overrides: testOverrides(settings: settings),
+    );
+
+    await tester.tap(find.text('Am Abholtag'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byIcon(Icons.keyboard_outlined));
+    await tester.pumpAndSettle();
+    await tester.enterText(find.byType(TextFormField).first, '16');
+    await tester.enterText(find.byType(TextFormField).last, '30');
+    await tester.tap(find.text('OK'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Geben Sie eine gültige Uhrzeit ein'), findsNothing);
+    expect(settings.rules![1].hour, 16);
+    expect(settings.rules![1].minute, 30);
+    expect(find.text('um 16:30'), findsOneWidget);
+  });
+
   testWidgets('add reminder via sheet', (tester) async {
     final settings = InMemorySettingsRepository();
     await pumpApp(tester, const Scaffold(body: RemindersSection()),

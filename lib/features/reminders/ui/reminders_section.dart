@@ -10,6 +10,7 @@ import '../providers/permission_status_provider.dart';
 import '../providers/reminder_rules_provider.dart';
 import '../providers/reminder_sync.dart';
 import 'add_reminder_sheet.dart';
+import 'time_picker.dart';
 
 class RemindersSection extends ConsumerWidget {
   const RemindersSection({super.key});
@@ -33,9 +34,9 @@ class RemindersSection extends ConsumerWidget {
             title: Text(daysBeforeLabel(l10n, rule.daysBefore)),
             subtitle: Text(l10n.reminderAt(formatRuleTime(rule))),
             onTap: () async {
-              final picked = await showTimePicker(
-                context: context,
-                initialTime: TimeOfDay(hour: rule.hour, minute: rule.minute),
+              final picked = await showReminderTimePicker(
+                context,
+                TimeOfDay(hour: rule.hour, minute: rule.minute),
               );
               if (picked != null) {
                 await notifier.updateRule(rule.copyWith(hour: picked.hour, minute: picked.minute));

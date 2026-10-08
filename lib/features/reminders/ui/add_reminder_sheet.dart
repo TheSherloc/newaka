@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../data/models/reminder_rule.dart';
 import '../../../l10n/app_localizations.dart';
+import 'time_picker.dart';
 
 String formatRuleTime(ReminderRule rule) =>
     '${rule.hour.toString().padLeft(2, '0')}:${rule.minute.toString().padLeft(2, '0')}';
@@ -65,10 +66,7 @@ class _AddReminderSheetState extends State<_AddReminderSheet> {
               leading: const Icon(Icons.schedule),
               title: Text(l10n.reminderAt(_time.format(context))),
               onTap: () async {
-                final picked = await showTimePicker(
-                  context: context,
-                  initialTime: _time,
-                );
+                final picked = await showReminderTimePicker(context, _time);
                 if (picked != null) setState(() => _time = picked);
               },
             ),
