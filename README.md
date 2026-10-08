@@ -11,7 +11,7 @@ Newaka ist eine Flutter-App für iOS und Android: Abfuhrtermine per CSV, ICS ode
 ## Release
 
 - Android: `android/key.properties` nach Vorlage `key.properties.example` anlegen, dann `flutter build appbundle --release`.
-- iOS: Codemagic-Workflow `ios-testflight` (siehe `codemagic.yaml`), benötigt App-Store-Connect-API-Key in der Umgebungsgruppe `app_store_credentials`.
+- iOS: Codemagic-Workflow `ios-testflight` (siehe `codemagic.yaml`), Voraussetzungen in Codemagic: App-Store-Connect-Team-Schlüssel (Rolle Admin) als Integration `newaka` unter Teams → Integrations → Developer Portal; darauf aufbauend unter Teams → Code signing identities ein Apple-Distribution-Zertifikat `newaka_distribution` und ein App-Store-Profil `newaka_app_store` für `de.newaka.app`.
 
 ## Testdaten
 
