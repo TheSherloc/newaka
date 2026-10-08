@@ -31,7 +31,8 @@ jobs:
       - run: flutter analyze
       - run: flutter test
       - run: flutter build apk --release
-      - uses: actions/upload-artifact@v4
+      # Gitea Actions does not support the v4 artifact protocol yet.
+      - uses: actions/upload-artifact@v3
         with:
           name: app-release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
