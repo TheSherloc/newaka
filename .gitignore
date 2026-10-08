@@ -51,3 +51,6 @@ app.*.map.json
 .superpowers/
 android/key.properties
 *.jks
+
+# Interne Planungsdokumente (Spec, Pläne) bleiben lokal; docs/ wird über GitHub Pages veröffentlicht.
+docs/superpowers/
