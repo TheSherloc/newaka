@@ -21,4 +21,16 @@ void main() {
     expect(m.keys, ['2026-01-05']);
     expect(m['2026-01-05']!.map((t) => t.id), ['papier', 'bio']);
   });
+
+  test('leaves out disabled waste types', () {
+    const rest = WasteType(id: 'rest', displayName: 'Rest', color: 3, icon: 'trash', enabled: false);
+    final data = AppData(
+      events: [
+        PickupEvent(date: DateTime(2026, 1, 5), wasteTypeId: 'rest', sourceId: 's'),
+        PickupEvent(date: DateTime(2026, 1, 5), wasteTypeId: 'bio', sourceId: 's'),
+      ],
+      wasteTypes: const [bio, rest],
+    );
+    expect(eventsByDay(data)['2026-01-05']!.map((t) => t.id), ['bio']);
+  });
 }

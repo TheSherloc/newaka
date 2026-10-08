@@ -24,15 +24,21 @@ class WasteTypesSection extends ConsumerWidget {
         SectionHeader(l10n.sectionWasteTypes),
         for (final t in types)
           ListTile(
-            leading: CircleAvatar(
-              backgroundColor: accentFor(context, t.color).withValues(alpha: 0.18),
-              child: Icon(wasteIconFor(t.icon), color: accentFor(context, t.color)),
+            leading: Opacity(
+              opacity: t.enabled ? 1 : 0.4,
+              child: CircleAvatar(
+                backgroundColor: accentFor(context, t.color).withValues(alpha: 0.18),
+                child: Icon(wasteIconFor(t.icon), color: accentFor(context, t.color)),
+              ),
             ),
-            title: Text(t.displayName),
-            subtitle: Text(l10n.notifyForType),
+            title: Text(
+              t.displayName,
+              style: t.enabled ? null : TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant),
+            ),
+            subtitle: Text(t.enabled ? l10n.typeActive : l10n.typeHidden),
             trailing: Switch(
-              value: t.notificationsEnabled,
-              onChanged: (v) => notifier.updateWasteType(t.copyWith(notificationsEnabled: v)),
+              value: t.enabled,
+              onChanged: (v) => notifier.updateWasteType(t.copyWith(enabled: v)),
             ),
             onTap: () async {
               final edited = await showEditWasteTypeSheet(context, t);

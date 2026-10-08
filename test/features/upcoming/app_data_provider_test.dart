@@ -48,9 +48,9 @@ void main() {
     final c = createTestContainer(events: repo, gateway: gateway);
     await c.read(appDataProvider.future);
     await c.read(appDataProvider.notifier).updateWasteType(
-          const WasteType(id: 'bio', displayName: 'Bio', color: 1, icon: 'leaf', notificationsEnabled: false),
+          const WasteType(id: 'bio', displayName: 'Bio', color: 1, icon: 'leaf', enabled: false),
         );
-    expect(repo.data.wasteTypes.single.notificationsEnabled, isFalse);
+    expect(repo.data.wasteTypes.single.enabled, isFalse);
     expect(gateway.scheduled, isEmpty);
     expect(gateway.cancelAllCount, 1);
   });

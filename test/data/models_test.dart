@@ -28,13 +28,28 @@ void main() {
       displayName: 'Biotonne',
       color: 0xFF6D4C41,
       icon: 'leaf',
-      notificationsEnabled: true,
+      enabled: true,
     );
     final back = WasteType.fromJson(t.toJson());
     expect(back.id, 'biotonne');
     expect(back.color, 0xFF6D4C41);
-    expect(t.copyWith(notificationsEnabled: false).notificationsEnabled, false);
+    expect(t.copyWith(enabled: false).enabled, false);
+    expect(WasteType.fromJson(t.copyWith(enabled: false).toJson()).enabled, isFalse);
     expect(t.copyWith(displayName: 'Bio').id, 'biotonne');
+  });
+
+  test('WasteType reads the legacy notificationsEnabled key', () {
+    final json = {'id': 'bio', 'displayName': 'Bio', 'color': 1, 'icon': 'leaf', 'notificationsEnabled': false};
+    expect(WasteType.fromJson(json).enabled, isFalse);
+    expect(WasteType.fromJson({...json}..remove('notificationsEnabled')).enabled, isTrue);
+  });
+
+  test('AppData.activeWasteTypes leaves out disabled types', () {
+    const data = AppData(events: [], wasteTypes: [
+      WasteType(id: 'bio', displayName: 'Bio', color: 1, icon: 'leaf'),
+      WasteType(id: 'rest', displayName: 'Rest', color: 2, icon: 'trash', enabled: false),
+    ]);
+    expect(data.activeWasteTypes.map((t) => t.id), ['bio']);
   });
 
   test('ReminderRule defaults and json', () {

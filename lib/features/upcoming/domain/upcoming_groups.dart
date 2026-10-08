@@ -14,7 +14,7 @@ List<DayGroup> upcomingGroups({
   required DateTime now,
   int horizonDays = 28,
 }) {
-  final typeById = {for (final t in data.wasteTypes) t.id: t};
+  final typeById = {for (final t in data.activeWasteTypes) t.id: t};
   final today = now.dateOnly;
   final byDate = <String, DayGroup>{};
   for (final e in data.events) {

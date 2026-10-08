@@ -10,6 +10,9 @@ class AppData {
   final List<PickupEvent> events;
   final List<WasteType> wasteTypes;
 
+  /// Nur eingeschaltete Arten; alles Sichtbare in der App leitet sich hieraus ab.
+  List<WasteType> get activeWasteTypes => [for (final t in wasteTypes) if (t.enabled) t];
+
   AppData copyWith({List<PickupEvent>? events, List<WasteType>? wasteTypes}) =>
       AppData(events: events ?? this.events, wasteTypes: wasteTypes ?? this.wasteTypes);
 

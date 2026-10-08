@@ -447,11 +447,17 @@ abstract class AppLocalizations {
   /// **'Exakte Alarme sind nicht erlaubt, Erinnerungen können einige Minuten verzögert sein.'**
   String get exactAlarmsMissing;
 
-  /// No description provided for @notifyForType.
+  /// No description provided for @typeActive.
   ///
   /// In de, this message translates to:
-  /// **'Erinnern'**
-  String get notifyForType;
+  /// **'Aktiv'**
+  String get typeActive;
+
+  /// No description provided for @typeHidden.
+  ///
+  /// In de, this message translates to:
+  /// **'Ausgeblendet'**
+  String get typeHidden;
 
   /// No description provided for @editWasteType.
   ///

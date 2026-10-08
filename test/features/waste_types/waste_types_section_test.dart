@@ -11,16 +11,18 @@ import '../../support/test_container.dart';
 const bio = WasteType(id: 'bio', displayName: 'Biotonne', color: 0xFF6D4C41, icon: 'leaf');
 
 void main() {
-  testWidgets('lists types, toggles notifications, edits name and color', (tester) async {
+  testWidgets('lists types, toggles visibility, edits name and color', (tester) async {
     final repo = InMemoryEventRepository(const AppData(events: [], wasteTypes: [bio]));
     await pumpApp(tester, const Scaffold(body: SingleChildScrollView(child: WasteTypesSection())),
         overrides: testOverrides(events: repo));
 
     expect(find.text('Biotonne'), findsOneWidget);
+    expect(find.text('Aktiv'), findsOneWidget);
 
     await tester.tap(find.byType(Switch));
     await tester.pumpAndSettle();
-    expect(repo.data.wasteTypes.single.notificationsEnabled, isFalse);
+    expect(repo.data.wasteTypes.single.enabled, isFalse);
+    expect(find.text('Ausgeblendet'), findsOneWidget);
 
     await tester.tap(find.text('Biotonne'));
     await tester.pumpAndSettle();

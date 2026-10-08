@@ -208,7 +208,10 @@ class AppLocalizationsDe extends AppLocalizations {
       'Exakte Alarme sind nicht erlaubt, Erinnerungen können einige Minuten verzögert sein.';
 
   @override
-  String get notifyForType => 'Erinnern';
+  String get typeActive => 'Aktiv';
+
+  @override
+  String get typeHidden => 'Ausgeblendet';
 
   @override
   String get editWasteType => 'Abfuhrart bearbeiten';
